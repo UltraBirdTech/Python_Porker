@@ -111,3 +111,9 @@ class TsstHand(unittest.TestCase):
     
     def test_all(self):
         self.assertEqual(type(self.hand.hand), type([]))
+
+    def test_print_hand(self):
+        pass
+
+    def test_get_number(self):
+        pass
