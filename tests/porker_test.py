@@ -71,8 +71,15 @@ class TestPlayer(unittest.TestCase):
         self.player.cut(0)
         self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand - 1)
 
+    # mock method
+    def input(self):
+        print('input function is mocked')
+        return '0'
+
     def test_exchange(self):
-        pass
+        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand)
+        #self.player.exchange(self.deck)
+        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand)
 
     def test_print_my_hand(self):
         pass
