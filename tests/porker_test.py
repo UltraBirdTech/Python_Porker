@@ -1,7 +1,7 @@
-# [USAGE]: python -m unittest test/porker_test.py
+# [USAGE]: python -m unittest tests/porker_test.py
 import unittest
 
-import porker
+from porker import Card
 
 class TestCard(unittest.TestCase):
     def setup(self):
