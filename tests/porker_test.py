@@ -44,6 +44,6 @@ class TestDeck(unittest.TestCase):
         len(self.deck.deck_list) == 4 * 12 # ['♠︎', '♣︎', '♦︎', '♡''] * [A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K]
 
     def test_draw(self):
-        self.deck.draw()
+        self.assertEqual(type(self.deck.draw()), type(Card('♠︎', 'A')))
         len(self.deck.deck_list) == ((4 * 12) - 1)
 
