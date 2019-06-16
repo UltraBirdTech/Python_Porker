@@ -89,3 +89,25 @@ class TestPlayer(unittest.TestCase):
 
     def test_check_porker_hand(self):
         pass
+
+class TsstHand(unittest.TestCase):
+    def setUp(self):
+        self.hand = Hand()
+
+    def test_hand_initialize(self):
+        self.assertEqual(self.hand.max_hand, 5)
+        self.assertEqual(type(self.hand.hand), type([]))
+
+    def test_add(self):
+        self.assertEqual(len(self.hand.hand), 0)
+        self.hand.add(Card('♠︎', '1'))
+        self.assertEqual(len(self.hand.hand), 1)
+    
+    def test_cut(self):
+        self.hand.add(Card('♠︎', '1'))
+        self.assertEqual(len(self.hand.hand), 1)
+        self.hand.cut(0)
+        self.assertEqual(len(self.hand.hand), 0)
+    
+    def test_all(self):
+        self.assertEqual(type(self.hand.hand), type([]))
