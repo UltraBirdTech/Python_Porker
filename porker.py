@@ -295,6 +295,6 @@ class Peke(PorkerHand):
     def display(self):
         print('PE☆KE')
 
-
-main()
+if __name__ == '__main__':
+    main()
 
