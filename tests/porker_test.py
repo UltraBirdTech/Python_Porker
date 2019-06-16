@@ -43,7 +43,8 @@ class TestDeck(unittest.TestCase):
         self.deck = Deck()
 
     def test_check_deck_num(self):
-        self.assertEqual(len(self.deck.deck_list), 4 * 13) # ['♠︎', '♣︎', '♦︎', '♡''] * [A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K]
+        # ['♠︎', '♣︎', '♦︎', '♡''] * [A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K]
+        self.assertEqual(len(self.deck.deck_list), 4 * 13)
 
     def test_draw(self):
         self.assertEqual(type(self.deck.draw()), type(Card('♠︎', 'A')))
@@ -59,7 +60,15 @@ class TestPlayer(unittest.TestCase):
 
     def test_draw(self):
         deck_list_num = len(self.deck.deck_list)
-        self.assertEqual(len(self.player.hand.all()), 5)
+        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand) # max_hand is 5
+
         self.player.draw(self.deck)
         self.assertEqual(len(self.deck.deck_list), deck_list_num - 1)
-        self.assertEqual(len(self.player.hand.all()), 6)
+        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand + 1)
+
+    def test_cut(self):
+        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand) # max_hand is 5
+        self.player.cut(0)
+        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand - 1)
+
+
