@@ -3,6 +3,8 @@ import unittest
 
 from porker import Card
 from porker import Deck
+from porker import Player
+from porker import Hand
 
 class TestCard(unittest.TestCase):
     def setUp(self):
@@ -47,3 +49,17 @@ class TestDeck(unittest.TestCase):
         self.assertEqual(type(self.deck.draw()), type(Card('♠︎', 'A')))
         len(self.deck.deck_list) == ((4 * 12) - 1)
 
+class TestPlayer(unittest.TestCase):
+    def setUp(self):
+        self.deck = Deck()
+        self.player = Player(self.deck)
+
+    def test_player_initialize(self):
+        self.assertEqual(type(self.player.hand), type(Hand()))
+
+    def test_draw(self):
+        deck_list_num = len(self.deck.deck_list)
+        self.assertEqual(len(self.player.hand.all()), 5)
+        self.player.draw(self.deck)
+        self.assertEqual(len(self.deck.deck_list), deck_list_num - 1)
+        self.assertEqual(len(self.player.hand.all()), 6)
