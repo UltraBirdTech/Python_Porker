@@ -71,4 +71,14 @@ class TestPlayer(unittest.TestCase):
         self.player.cut(0)
         self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand - 1)
 
+    def test_exchange(self):
+        pass
 
+    def test_print_my_hand(self):
+        pass
+
+    def test_print_result(self):
+        pass
+
+    def test_check_porker_hand(self):
+        pass
