@@ -2,6 +2,7 @@
 import unittest
 
 from porker import Card
+from porker import Deck
 
 class TestCard(unittest.TestCase):
     def setUp(self):
@@ -34,3 +35,15 @@ class TestCard(unittest.TestCase):
         self.assertEqual(self.card2.card_number(), 2)
         self.assertEqual(self.card3.card_number(), 13)
         self.assertEqual(self.card4.card_number(), 10)
+
+class TestDeck(unittest.TestCase):
+    def setUp(self):
+        self.deck = Deck()
+
+    def test_check_deck_num(self):
+        len(self.deck.deck_list) == 4 * 12 # ['♠︎', '♣︎', '♦︎', '♡''] * [A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K]
+
+    def test_draw(self):
+        self.deck.draw()
+        len(self.deck.deck_list) == ((4 * 12) - 1)
+
