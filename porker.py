@@ -60,6 +60,10 @@ class Player():
 
     def exchange(self, deck):
         input_value = input()
+        if input_value == 'p':
+            print('exchange is pass')
+            return
+
         input_list = input_value.split(',')
         input_list.reverse()
         for i in input_list:
