@@ -19,7 +19,7 @@ class Card():
 
     def card_number(self):
         if self.num not in ['A', 'J', 'Q', 'K']:
-            return self.num
+            return int(self.num)
 
         card_mapping = {
             'K': 13,
@@ -106,7 +106,7 @@ class Hand():
     def get_numbers_as_int(self):
         numbers = []
         for c in self.hand:
-            numbers.append(int(c.card_number()))
+            numbers.append(c.card_number())
         return numbers
  
     def get_all_suites(self):
