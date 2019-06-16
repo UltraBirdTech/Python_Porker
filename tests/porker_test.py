@@ -43,11 +43,11 @@ class TestDeck(unittest.TestCase):
         self.deck = Deck()
 
     def test_check_deck_num(self):
-        len(self.deck.deck_list) == 4 * 12 # ['♠︎', '♣︎', '♦︎', '♡''] * [A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K]
+        self.assertEqual(len(self.deck.deck_list), 4 * 13) # ['♠︎', '♣︎', '♦︎', '♡''] * [A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K]
 
     def test_draw(self):
         self.assertEqual(type(self.deck.draw()), type(Card('♠︎', 'A')))
-        len(self.deck.deck_list) == ((4 * 12) - 1)
+        self.assertEqual(len(self.deck.deck_list), ((4 * 13) - 1))
 
 class TestPlayer(unittest.TestCase):
     def setUp(self):
