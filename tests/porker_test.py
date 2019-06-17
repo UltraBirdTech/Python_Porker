@@ -5,6 +5,10 @@ from porker import Card
 from porker import Deck
 from porker import Player
 from porker import Hand
+from porker import PorkerHand
+from porker import StraightFlash
+from porker import Flash
+from porker import Straight
 
 class TestCard(unittest.TestCase):
     def setUp(self):
@@ -144,3 +148,87 @@ class TestHand(unittest.TestCase):
         for suit in suits:
             self.assertEqual(type(suit), str)
         self.assertEqual(suits, ['♠', '♣︎', '♦︎', '♡', '♠'])
+
+class TestCheck(unittest.TestCase):
+    pass
+
+# Check Porker Hand class
+class TestPorkerHand(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+
+    def test_initialize(self):
+        porker_hand = PorkerHand('Test')
+        self.assertEqual(porker_hand.result, False)
+        self.assertEqual(porker_hand.porker_hand, 'Test')
+
+    def test_check_conditions(self):
+        pass
+
+    def test_check(self):
+        pass
+
+    def display(self):
+        pass
+
+class TestStraightFlash(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+
+        self.straight_flash = StraightFlash()
+        self.flash = Flash()
+        self.straight = Straight()
+
+    def test_initialize(self):
+        self.assertEqual(self.straight_flash.result, False)
+        self.assertEqual(self.straight_flash.porker_hand, 'StraightFlash')
+
+    def test_check_is_True(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♠︎', '2'),
+                             Card('♠︎', '3'),
+                             Card('♠︎', '4'),
+                             Card('♠︎', '5')]
+        
+        self.flash.check(self.hand)
+        self.straight.check(self.hand)
+        self.straight_flash.check(self.hand, self.flash.result, self.straight.result)
+        self.assertEqual(self.straight_flash.result, True)
+    
+    def test_check_is_False(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♦', '3'),
+                             Card('♠︎', '5'),
+                             Card('♦', '7'),
+                             Card('♠︎', '9')]
+        self.flash.check(self.hand)
+        self.straight.check(self.hand)
+        self.straight_flash.check(self.hand, self.flash.result, self.straight.result)
+        self.assertEqual(self.straight_flash.result, False)
+
+    def test_check_royal_straight_flash(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♠︎', '10'),
+                             Card('♠︎', 'J'),
+                             Card('♠︎', 'Q'),
+                             Card('♠︎', 'K')]
+        
+        self.flash.check(self.hand)
+        self.straight.check(self.hand)
+        self.straight_flash.check(self.hand, self.flash.result, self.straight.result)
+        self.assertEqual(self.straight_flash.result, True)
+        self.assertEqual(self.straight_flash.porker_hand, 'RoyalStraightFlash')
+        self.assertEqual(self.straight_flash.is_royal(self.hand), True)
+
+    def test_is_royal(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♠︎', '10'),
+                             Card('♠︎', 'J'),
+                             Card('♠︎', 'Q'),
+                             Card('♠︎', 'K')]
+        self.assertEqual(self.straight_flash.is_royal(self.hand), True)
+        
