@@ -9,6 +9,7 @@ from porker import PorkerHand
 from porker import StraightFlash
 from porker import Flash
 from porker import Straight
+from porker import FourCard
 
 class TestCard(unittest.TestCase):
     def setUp(self):
@@ -298,3 +299,32 @@ class TestStraight(unittest.TestCase):
                              Card('♠︎', '9')]
         self.straight.check(self.hand)
         self.assertEqual(self.straight.result, False)
+
+class TestFourCard(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.four_card = FourCard()
+
+    def test_initialize(self):
+        self.assertEqual(self.four_card.result, False)
+        self.assertEqual(self.four_card.porker_hand, 'FourCard')
+
+    def test_check_is_True(self):
+        self.hand.hand =    [Card('♠︎', '3'),
+                             Card('♣︎', '3'),
+                             Card('♦︎', '3'),
+                             Card('♥', '3'),
+                             Card('♠︎', '9')]
+        self.four_card.check(self.hand)
+        self.assertEqual(self.four_card.result, True)
+    
+    def test_check_is_False(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♦', '3'),
+                             Card('♠︎', '5'),
+                             Card('♦', '7'),
+                             Card('♠︎', '9')]
+        self.four_card.check(self.hand)
+        self.assertEqual(self.four_card.result, False)
