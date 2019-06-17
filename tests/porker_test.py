@@ -20,11 +20,11 @@ class TestCard(unittest.TestCase):
         self.assertEqual(self.card4.num, '10')
 
 
-    def test_set_card_suite(self):
-        self.assertEqual(self.card1.suite, '♠︎')
-        self.assertEqual(self.card2.suite, '♣︎')
-        self.assertEqual(self.card3.suite, '♦︎')
-        self.assertEqual(self.card4.suite, '♡')
+    def test_set_card_suit(self):
+        self.assertEqual(self.card1.suit, '♠︎')
+        self.assertEqual(self.card2.suit, '♣︎')
+        self.assertEqual(self.card3.suit, '♦︎')
+        self.assertEqual(self.card4.suit, '♡')
 
     def test_set_card_value(self):
         self.assertEqual(self.card1.value, '♠︎A')

@@ -12,10 +12,10 @@ def main():
     player.print_result()
 
 class Card():
-    def __init__(self, suite, num):
-        self.suite = suite
+    def __init__(self, suit, num):
+        self.suit = suit
         self.num = num
-        self.value = suite + num
+        self.value = suit + num
 
     def card_number(self):
         if self.num not in ['A', 'J', 'Q', 'K']:
@@ -32,10 +32,10 @@ class Card():
 
 class Deck():
     def __init__(self):
-        suites = ['♠','♣','♥','♦']
+        suits = ['♠','♣','♥','♦']
         numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
         deck_list = []
-        for s in suites:
+        for s in suits:
             for n in numbers:
                 deck_list.append(Card(s, n))
         
@@ -113,11 +113,11 @@ class Hand():
             numbers.append(c.card_number())
         return numbers
  
-    def get_all_suites(self):
-        suites = []
+    def get_all_suits(self):
+        suits = []
         for h in self.hand:
-            suites.append(h.suite)
-        return suites
+            suits.append(h.suit)
+        return suits
 
 
 class Check():
@@ -211,8 +211,8 @@ class Flash(PorkerHand):
         super().__init__('Flash')
 
     def check_conditions(self, hand):
-        suites = hand.get_all_suites() 
-        self.result = (len(set(suites)) == 1) # 重複をはじいた結果が1であればフラッシュ
+        suits = hand.get_all_suits() 
+        self.result = (len(set(suits)) == 1) # 重複をはじいた結果が1であればフラッシュ
 
 class Straight(PorkerHand):
     def __init__(self):
