@@ -260,3 +260,41 @@ class TestFlash(unittest.TestCase):
                              Card('♠︎', '9')]
         self.flash.check(self.hand)
         self.assertEqual(self.flash.result, False)
+
+class TestStraight(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.straight = Straight()
+
+    def test_initialize(self):
+        self.assertEqual(self.straight.result, False)
+        self.assertEqual(self.straight.porker_hand, 'Straight')
+
+    def test_check_is_True(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♦', '2'),
+                             Card('♠︎', '3'),
+                             Card('♠︎', '4'),
+                             Card('♠︎', '5')]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, True)
+
+    def test_check_is_True_first_10(self):
+        self.hand.hand =    [Card('♠︎', '10'),
+                             Card('♦', 'J'),
+                             Card('♠︎', 'Q'),
+                             Card('♠︎', 'K'),
+                             Card('♠︎', 'A')]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, True)
+    
+    def test_check_is_False(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♦', '3'),
+                             Card('♠︎', '5'),
+                             Card('♦', '7'),
+                             Card('♠︎', '9')]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, False)
