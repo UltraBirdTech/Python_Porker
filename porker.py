@@ -125,7 +125,6 @@ class Check():
         self.initialize_porker_hands()
 
     def check(self, hand):
-#        hand.hand = [Card('♠', '3'), Card('♣', '1'), Card('♥', 'J'), Card('♦', 'J'), Card('♠', 'K')]
         self.flash.check(hand)
         self.straight.check(hand)
 
