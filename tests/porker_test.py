@@ -94,6 +94,15 @@ class TestHand(unittest.TestCase):
     def setUp(self):
         self.hand = Hand()
 
+    def initialize_hand(self):
+        self.hand.hand += ([
+            Card('♠', 'A'),
+            Card('♣︎', '2'),
+            Card('♦︎', 'K'),
+            Card('♡', '10'),
+            Card('♠', 'J')
+        ])
+
     def test_hand_initialize(self):
         self.assertEqual(self.hand.max_hand, 5)
         self.assertEqual(type(self.hand.hand), type([]))
@@ -115,5 +124,23 @@ class TestHand(unittest.TestCase):
     def test_print_hand(self):
         pass
 
-    def test_get_number(self):
-        pass
+    def test_get_numbers(self):
+        self.initialize_hand()
+        numbers = self.hand.get_numbers()
+        for num in numbers:
+            self.assertEqual(type(num), str)
+        self.assertEqual(numbers, ['A', '2', 'K', '10', 'J'])
+
+    def test_get_numbers_as_int(self):
+        self.initialize_hand()
+        numbers = self.hand.get_numbers_as_int()
+        for num in numbers:
+            self.assertEqual(type(num), int)
+        self.assertEqual(numbers, [1, 2, 13, 10, 11])
+
+    def test_get_suits(self):
+        self.initialize_hand()
+        suits = self.hand.get_all_suits()
+        for suit in suits:
+            self.assertEqual(type(suit), str)
+        self.assertEqual(suits, ['♠', '♣︎', '♦︎', '♡', '♠'])
