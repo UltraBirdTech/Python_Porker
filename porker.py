@@ -229,16 +229,32 @@ class Straight(PorkerHand):
             number_list = list(range(numbers[0], numbers[0] + 5))
         self.result = (numbers == number_list)
 
-class FourCard(PorkerHand):
-    def __init__(self):
-        super().__init__('FourCard')
+class Kind(PorkerHand):
+    def __init__(self, porker_hand):
+        super().__init__(porker_hand)
 
     def check_conditions(self, hand):
         numbers = hand.get_numbers_as_int()
         for num in numbers:
-            if numbers.count(num) == 4:
+            if numbers.count(num) == self.card_num:
                self.result = True
                break
+
+class FourCard(Kind):
+    def __init__(self):
+        super().__init__('FourCard')
+        self.card_num = 4
+
+    def check_conditions(self, hand):
+        super().check_conditions(hand)
+
+class ThreeCard(Kind):
+    def __init__(self):
+        super().__init__('ThreeCard')
+        self.card_num = 3
+
+    def check_conditions(self, hand):
+        super().check_conditions(hand)
 
 class FullHouse(PorkerHand):
     def __init__(self):
@@ -249,17 +265,6 @@ class FullHouse(PorkerHand):
 
     def check(self, hand, onepair_result, three_card_result):
         self.check_conditions(hand, onepair_result, three_card_result)
-
-class ThreeCard(PorkerHand):
-    def __init__(self):
-        super().__init__('ThreeCard')
-
-    def check_conditions(self, hand):
-        numbers = hand.get_numbers_as_int()
-        for num in numbers:
-            if numbers.count(num) == 3:
-               self.result = True
-               break
 
 class Pair(PorkerHand):
     def __init__(self, porker_hand):
@@ -274,7 +279,6 @@ class Pair(PorkerHand):
             else:
                 check_dict[n] = 1
         self.result = list(check_dict.values()).count(2) == self.pair_num
-
 
 class TwoPair(Pair):
     def __init__(self):
