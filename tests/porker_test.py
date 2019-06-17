@@ -10,6 +10,11 @@ from porker import StraightFlash
 from porker import Flash
 from porker import Straight
 
+def input(self):
+    print('input function is mocked')
+    return '0'
+
+
 class TestCard(unittest.TestCase):
     def setUp(self):
         self.card1 = Card('♠︎', 'A')
@@ -82,7 +87,7 @@ class TestPlayer(unittest.TestCase):
 
     def test_exchange(self):
         self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand)
-        #self.player.exchange(self.deck)
+        self.player.exchange(self.deck)
         self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand)
 
     def test_print_my_hand(self):
@@ -231,4 +236,32 @@ class TestStraightFlash(unittest.TestCase):
                              Card('♠︎', 'Q'),
                              Card('♠︎', 'K')]
         self.assertEqual(self.straight_flash.is_royal(self.hand), True)
-        
+
+class TestFlash(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.flash = Flash()
+
+    def test_initialize(self):
+        self.assertEqual(self.flash.result, False)
+        self.assertEqual(self.flash.porker_hand, 'Flash')
+
+    def test_check_is_True(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♠︎', '3'),
+                             Card('♠︎', '5'),
+                             Card('♠︎', '7'),
+                             Card('♠︎', '9')]
+        self.flash.check(self.hand)
+        self.assertEqual(self.flash.result, True)
+    
+    def test_check_is_False(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♦', '3'),
+                             Card('♠︎', '5'),
+                             Card('♦', '7'),
+                             Card('♠︎', '9')]
+        self.flash.check(self.hand)
+        self.assertEqual(self.flash.result, False)
