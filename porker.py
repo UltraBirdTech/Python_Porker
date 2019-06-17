@@ -270,7 +270,7 @@ class Pair(PorkerHand):
     def __init__(self, porker_hand):
         super().__init__(porker_hand)
 
-    def check_pair(self, hand):
+    def check_conditions(self, hand):
         numbers = hand.get_numbers()
         check_dict = {}
         for n in numbers:
@@ -286,7 +286,7 @@ class TwoPair(Pair):
        self.pair_num = 2
 
     def check_conditions(self, hand):
-        self.check_pair(hand)
+        super().check_conditions(hand)
 
 class OnePair(Pair):
     def __init__(self):
@@ -294,7 +294,7 @@ class OnePair(Pair):
        self.pair_num = 1
 
     def check_conditions(self, hand):
-        self.check_pair(hand)
+        super().check_conditions(hand)
 
 class Peke(PorkerHand):
     def __init__(self):
