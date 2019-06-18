@@ -5,7 +5,6 @@ def main():
     try:
         deck = Deck()
         player = Player(deck)
-        player.print_my_hand()
         player.exchange(deck)
         player.print_my_hand()
         player.exchange(deck)
@@ -13,7 +12,7 @@ def main():
         player.check_poker_hand()
         player.print_result()
     except InputValueError as err:
-        print(err.message)
+        print('[ERROR]' + err.message)
     except Exception as err:
         print(err)
 
@@ -93,7 +92,7 @@ class Player():
             if value in correct_values:
                 continue
             else:
-                message = '[ERROR]: 入力値は数値(0~4)で入力してください。'
+                message = '入力値は数値(0~4)で入力してください。'
                 raise InputValueError(message)
 
 
