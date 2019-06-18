@@ -2,15 +2,20 @@ import random
 
 
 def main():
-    deck = Deck()
-    player = Player(deck)
-    player.print_my_hand()
-    player.exchange(deck)
-    player.print_my_hand()
-    player.exchange(deck)
-    player.print_my_hand()
-    player.check_poker_hand()
-    player.print_result()
+    try:
+        deck = Deck()
+        player = Player(deck)
+        player.print_my_hand()
+        player.exchange(deck)
+        player.print_my_hand()
+        player.exchange(deck)
+        player.print_my_hand()
+        player.check_poker_hand()
+        player.print_result()
+    except InputValueError as err:
+        print(err.message)
+    except Exception as err:
+        print(err)
 
 
 class Card():
@@ -80,13 +85,12 @@ class Player():
             self.draw(deck)
 
     def check_input_value(self, value):
-        if len(self.hand) <= value:
-            print('[ERROR]: 0~4の範囲で値を入力してください')
-            exit()
+        correct_values = ['0', '1', '2', '3', '4', 'p']
+        if value in correct_values:
+            return
 
-        if value == 'p' or int(value):
-            print('[ERROR]: 入力値は数値(0~4)で入力してください。')
-            exit()
+        message = '[ERROR]: 入力値は数値(0~4)で入力してください。'
+        raise InputValueError(message)
 
 
     def print_my_hand(self):
@@ -97,6 +101,10 @@ class Player():
 
     def check_poker_hand(self):
         self.hand.check_porker_hand()
+
+class InputValueError(Exception):
+    def __init__(self, message):
+        self.message = message
 
 class Hand():
     def __init__(self):
