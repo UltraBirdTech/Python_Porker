@@ -40,12 +40,12 @@ class Deck():
     def __init__(self):
         suits = ['♠', '♣', '♥', '♦']
         numbers = ['A', '2', '3', '4', '5', '6', '7',
-                    '8', '9', '10', 'J', 'Q', 'K']
+                   '8', '9', '10', 'J', 'Q', 'K']
         deck_list = []
         for s in suits:
             for n in numbers:
                 deck_list.append(Card(s, n))
-        
+
         self.deck_list = deck_list
 
     def draw(self):
