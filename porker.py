@@ -73,6 +73,7 @@ class Player():
             print('exchange is pass')
             return
 
+        input_list.sort()
         input_list.reverse()
         for i in input_list:
             self.cut(i)
