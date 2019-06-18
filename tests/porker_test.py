@@ -14,6 +14,7 @@ from porker import FullHouse
 from porker import ThreeCard
 from porker import TwoPair
 from porker import OnePair
+from porker import Peke
 
 class TestCard(unittest.TestCase):
     def setUp(self):
@@ -473,3 +474,10 @@ class TestOnePair(unittest.TestCase):
                              Card('♠︎', '9')]
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, False)
+
+class TestPeke(unittest.TestCase):
+    def setUp(self):
+        self.peke = Peke()
+
+    def test_initialize(self):
+        self.assertEqual(self.peke.porker_hand, 'PEKE')
