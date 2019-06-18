@@ -61,7 +61,14 @@ class Player():
         self.hand.cut(int(num))
 
     def exchange(self, deck):
+        print('交換する手札を番号で入力してください')
+        print('複数ある場合は","区切りで入力してください')
+        for i, c in enumerate(self.hand.all()):
+            print(str(i) + ': [' + c.value + ']')
+        print('p: 手札交換をスキップします')
+
         input_value = input()
+        self.check_input_value(input_value)        
         if input_value == 'p':
             print('exchange is pass')
             return
@@ -71,6 +78,16 @@ class Player():
         for i in input_list:
             self.cut(i)
             self.draw(deck)
+
+    def check_input_value(self, value):
+        if len(self.hand) <= value:
+            print('[ERROR]: 0~4の範囲で値を入力してください')
+            exit()
+
+        if value == 'p' or int(value):
+            print('[ERROR]: 入力値は数値(0~4)で入力してください。')
+            exit()
+
 
     def print_my_hand(self):
         self.hand.print_my_hand()
