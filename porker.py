@@ -1,5 +1,6 @@
 import random
 
+
 def main():
     deck = Deck()
     player = Player(deck)
@@ -10,6 +11,7 @@ def main():
     player.print_my_hand()
     player.check_poker_hand()
     player.print_result()
+
 
 class Card():
     def __init__(self, suit, num):
@@ -25,7 +27,7 @@ class Card():
             'K': 13,
             'Q': 12,
             'J': 11,
-            'A': 1 
+            'A': 1
         }
         return card_mapping[self.num]
 
