@@ -91,6 +91,12 @@ class TestPlayer(unittest.TestCase):
         #self.player.exchange(self.deck)
         self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand)
 
+    def test_print_usage(self):
+        pass
+
+    def test_check_input_value(self):
+        pass
+
     def test_print_my_hand(self):
         pass
 
