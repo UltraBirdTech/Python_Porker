@@ -388,3 +388,12 @@ class TestOnePair(unittest.TestCase):
                              Card('♠︎', '9')]
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, False)
+
+    def test_check_is_False_when_two_pair(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♦', 'A'),
+                             Card('♠︎', '5'),
+                             Card('♦', '5'),
+                             Card('♠︎', '9')]
+        self.one_pair.check(self.hand)
+        self.assertEqual(self.one_pair.result, False)
