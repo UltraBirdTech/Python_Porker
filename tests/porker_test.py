@@ -10,6 +10,7 @@ from porker import StraightFlash
 from porker import Flash
 from porker import Straight
 from porker import FourCard
+from porker import FullHouse
 from porker import ThreeCard
 from porker import TwoPair
 from porker import OnePair
@@ -360,6 +361,42 @@ class TestThreeCard(unittest.TestCase):
                              Card('♠︎', '9')]
         self.three_card.check(self.hand)
         self.assertEqual(self.three_card.result, False)
+
+class TestFulleHouse(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.full_house = FullHouse()
+        
+        self.three_card = ThreeCard()
+        self.one_pair = OnePair()
+
+    def test_initialize(self):
+        self.assertEqual(self.full_house.result, False)
+        self.assertEqual(self.full_house.porker_hand, 'FullHouse')  
+
+    def test_check_is_True(self):
+        self.hand.hand =    [Card('♠︎', '3'),
+                            Card('♣︎', '3'),
+                            Card('♦︎', '5'),
+                            Card('♥', '5'),
+                            Card('♠︎', '5')]
+        self.three_card.check(self.hand)
+        self.one_pair.check(self.hand)       
+        self.full_house.check(self.hand, self.one_pair.result , self.three_card.result) 
+        self.assertEqual(self.full_house.result, True)
+    
+    def test_check_is_False(self):
+        self.hand.hand =    [Card('♠︎', 'A'),
+                             Card('♦', '3'),
+                             Card('♠︎', '5'),
+                             Card('♦', '7'),
+                             Card('♠︎', '9')]
+        self.three_card.check(self.hand)
+        self.one_pair.check(self.hand)       
+        self.full_house.check(self.hand, self.one_pair.result , self.three_card.result) 
+        self.assertEqual(self.full_house.result, False)
 
 class TestTwoPair(unittest.TestCase):
     def setUp(self):
