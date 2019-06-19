@@ -88,7 +88,6 @@ class Player():
             print(str(i) + ': [' + c.value + ']')
         print('p: 手札交換をスキップします')
 
-
     def check_input_value(self, input_list):
         correct_values = ['0', '1', '2', '3', '4', 'p']
         for value in input_list:
@@ -97,7 +96,6 @@ class Player():
             else:
                 message = '入力値は数値(0~4)で入力してください。'
                 raise InputValueError(message)
-
 
     def print_my_hand(self):
         self.hand.print_my_hand()
