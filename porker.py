@@ -53,6 +53,7 @@ class Deck():
         self.deck_list.remove(card)
         return card
 
+
 class Player():
     def __init__(self, deck):
         self.hand = Hand()
