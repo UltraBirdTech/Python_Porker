@@ -70,7 +70,7 @@ class Player():
         self.print_usage()
         input_value = input()
         input_list = input_value.split(',')
-        self.check_input_value(input_list)        
+        self.check_input_value(input_list)
         if 'p' in input_list:
             print('exchange is pass')
             return
