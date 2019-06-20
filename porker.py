@@ -106,9 +106,11 @@ class Player():
     def check_poker_hand(self):
         self.hand.check_porker_hand()
 
+
 class InputValueError(Exception):
     def __init__(self, message):
         self.message = message
+
 
 class Hand():
     def __init__(self):
