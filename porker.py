@@ -145,7 +145,7 @@ class Hand():
         for c in self.hand:
             numbers.append(c.card_number())
         return numbers
- 
+
     def get_all_suits(self):
         suits = []
         for h in self.hand:
