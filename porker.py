@@ -161,7 +161,9 @@ class Check():
         self.flash.check(hand)
         self.straight.check(hand)
 
-        self.straight_flash.check(hand, self.flash.result, self.straight.result)
+        flash_result = self.flash.result
+        straight_result = self.straight.result
+        self.straight_flash.check(hand, flash.result, straight.result)
         if self.straight_flash.result:
             return self.straight_flash
 
