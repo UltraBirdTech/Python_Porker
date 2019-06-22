@@ -170,7 +170,7 @@ class Check():
 
         if self.flash.result:
             return self.flash
-            
+
         if self.straight.result:
             return self.straight 
 
