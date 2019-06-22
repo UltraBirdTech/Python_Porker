@@ -236,13 +236,22 @@ class TestStraightFlash(unittest.TestCase):
         self.assertEqual(self.straight_flash.porker_hand, 'RoyalStraightFlash')
         self.assertEqual(self.straight_flash.is_royal(self.hand), True)
 
-    def test_is_royal(self):
+    def test_is_royal_true(self):
         self.hand.hand =    [Card('♠︎', 'A'),
                              Card('♠︎', '10'),
                              Card('♠︎', 'J'),
                              Card('♠︎', 'Q'),
                              Card('♠︎', 'K')]
         self.assertEqual(self.straight_flash.is_royal(self.hand), True)
+
+    def test_is_royal_false(self):
+        self.hand.hand =    [Card('♠︎', '9'),
+                             Card('♠︎', '10'),
+                             Card('♠︎', 'J'),
+                             Card('♠︎', 'Q'),
+                             Card('♠︎', 'K')]
+        self.assertEqual(self.straight_flash.is_royal(self.hand), False)
+
 
 class TestFlash(unittest.TestCase):
     def setUp(self):

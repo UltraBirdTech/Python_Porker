@@ -239,7 +239,11 @@ class StraightFlash(PorkerHand):
         self.check_conditions(hand, straight_result, flash_result)
 
     def is_royal(self, hand):
-        return ['10', 'J', 'Q', 'K', 'A'].sort() == hand.get_numbers().sort()
+        hand_list = hand.get_numbers()
+        check_list = ['10', 'J', 'Q', 'K', 'A']
+        hand_list.sort()
+        check_list.sort()
+        return check_list == hand_list
 
 class Flash(PorkerHand):
     def __init__(self):
