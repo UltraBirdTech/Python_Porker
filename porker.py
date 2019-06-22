@@ -77,7 +77,7 @@ class Player():
 
         input_list.sort()
         input_list.reverse()
-        for i in input_list:
+        for i in set(input_list):
             self.cut(i)
             self.draw(deck)
 
