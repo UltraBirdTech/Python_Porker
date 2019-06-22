@@ -75,9 +75,10 @@ class Player():
             print('exchange is pass')
             return
 
-        input_list.sort()
-        input_list.reverse()
-        for i in set(input_list):
+        input_list_single = list(set(input_list))
+        input_list_single.sort()
+        input_list_single.reverse()
+        for i in input_list_single:
             self.cut(i)
             self.draw(deck)
 
