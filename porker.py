@@ -186,7 +186,7 @@ class Check():
         self.full_house.check(hand, one_pair_result, three_card_result)
         if self.full_house.result:
             return self.full_house
- 
+
         if self.three_card.result:
             return self.three_card
 
