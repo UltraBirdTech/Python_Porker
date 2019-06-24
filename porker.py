@@ -2,15 +2,19 @@ import random
 
 
 def main():
-    deck = Deck()
-    player = Player(deck)
-    player.print_my_hand()
-    player.exchange(deck)
-    player.print_my_hand()
-    player.exchange(deck)
-    player.print_my_hand()
-    player.check_poker_hand()
-    player.print_result()
+    try:
+        deck = Deck()
+        player = Player(deck)
+        player.exchange(deck)
+        player.print_my_hand()
+        player.exchange(deck)
+        player.print_my_hand()
+        player.check_poker_hand()
+        player.print_result()
+    except InputValueError as err:
+        print('[ERROR]' + err.message)
+    except Exception as err:
+        print(err)
 
 
 class Card():
@@ -34,19 +38,21 @@ class Card():
 
 class Deck():
     def __init__(self):
-        suits = ['♠','♣','♥','♦']
-        numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+        suits = ['♠', '♣', '♥', '♦']
+        numbers = ['A', '2', '3', '4', '5', '6', '7',
+                   '8', '9', '10', 'J', 'Q', 'K']
         deck_list = []
         for s in suits:
             for n in numbers:
                 deck_list.append(Card(s, n))
-        
+
         self.deck_list = deck_list
 
     def draw(self):
         card = random.choice(self.deck_list)
         self.deck_list.remove(card)
         return card
+
 
 class Player():
     def __init__(self, deck):
@@ -61,16 +67,36 @@ class Player():
         self.hand.cut(int(num))
 
     def exchange(self, deck):
+        self.print_usage()
         input_value = input()
-        if input_value == 'p':
+        input_list = input_value.split(',')
+        self.check_input_value(input_list)
+        if 'p' in input_list:
             print('exchange is pass')
             return
 
-        input_list = input_value.split(',')
-        input_list.reverse()
-        for i in input_list:
+        input_list_single = list(set(input_list))
+        input_list_single.sort()
+        input_list_single.reverse()
+        for i in input_list_single:
             self.cut(i)
             self.draw(deck)
+
+    def print_usage(self):
+        print('交換する手札を番号で入力してください')
+        print('複数ある場合は","区切りで入力してください')
+        for i, c in enumerate(self.hand.all()):
+            print(str(i) + ': [' + c.value + ']')
+        print('p: 手札交換をスキップします')
+
+    def check_input_value(self, input_list):
+        correct_values = ['0', '1', '2', '3', '4', 'p']
+        for value in input_list:
+            if value in correct_values:
+                continue
+            else:
+                message = '入力値は数値(0~4)で入力してください。'
+                raise InputValueError(message)
 
     def print_my_hand(self):
         self.hand.print_my_hand()
@@ -80,6 +106,12 @@ class Player():
 
     def check_poker_hand(self):
         self.hand.check_porker_hand()
+
+
+class InputValueError(Exception):
+    def __init__(self, message):
+        self.message = message
+
 
 class Hand():
     def __init__(self):
@@ -114,7 +146,7 @@ class Hand():
         for c in self.hand:
             numbers.append(c.card_number())
         return numbers
- 
+
     def get_all_suits(self):
         suits = []
         for h in self.hand:
@@ -130,13 +162,15 @@ class Check():
         self.flash.check(hand)
         self.straight.check(hand)
 
-        self.straight_flash.check(hand, self.flash.result, self.straight.result)
+        flash_result = self.flash.result
+        straight_result = self.straight.result
+        self.straight_flash.check(hand, flash_result, straight_result)
         if self.straight_flash.result:
             return self.straight_flash
 
         if self.flash.result:
             return self.flash
-            
+
         if self.straight.result:
             return self.straight 
 
@@ -205,7 +239,11 @@ class StraightFlash(PorkerHand):
         self.check_conditions(hand, straight_result, flash_result)
 
     def is_royal(self, hand):
-        return ['10', 'J', 'Q', 'K', 'A'].sort() == hand.get_numbers().sort()
+        hand_list = hand.get_numbers()
+        check_list = ['10', 'J', 'Q', 'K', 'A']
+        hand_list.sort()
+        check_list.sort()
+        return check_list == hand_list
 
 class Flash(PorkerHand):
     def __init__(self):

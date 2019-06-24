@@ -91,6 +91,12 @@ class TestPlayer(unittest.TestCase):
         #self.player.exchange(self.deck)
         self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand)
 
+    def test_print_usage(self):
+        pass
+
+    def test_check_input_value(self):
+        pass
+
     def test_print_my_hand(self):
         pass
 
@@ -230,13 +236,22 @@ class TestStraightFlash(unittest.TestCase):
         self.assertEqual(self.straight_flash.porker_hand, 'RoyalStraightFlash')
         self.assertEqual(self.straight_flash.is_royal(self.hand), True)
 
-    def test_is_royal(self):
+    def test_is_royal_true(self):
         self.hand.hand =    [Card('♠︎', 'A'),
                              Card('♠︎', '10'),
                              Card('♠︎', 'J'),
                              Card('♠︎', 'Q'),
                              Card('♠︎', 'K')]
         self.assertEqual(self.straight_flash.is_royal(self.hand), True)
+
+    def test_is_royal_false(self):
+        self.hand.hand =    [Card('♠︎', '9'),
+                             Card('♠︎', '10'),
+                             Card('♠︎', 'J'),
+                             Card('♠︎', 'Q'),
+                             Card('♠︎', 'K')]
+        self.assertEqual(self.straight_flash.is_royal(self.hand), False)
+
 
 class TestFlash(unittest.TestCase):
     def setUp(self):
