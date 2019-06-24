@@ -172,7 +172,7 @@ class Check():
             return self.flash
 
         if self.straight.result:
-            return self.straight 
+            return self.straight
 
         self.four_card.check(hand)
         if self.four_card.result:
