@@ -195,7 +195,7 @@ class Check():
             return self.two_pair
 
         if self.one_pair.result:
-            return self.one_pair 
+            return self.one_pair
 
         return self.peke
 
