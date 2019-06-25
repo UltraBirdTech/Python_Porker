@@ -181,8 +181,8 @@ class Check():
         self.three_card.check(hand)
         self.one_pair.check(hand)
 
-        one_pair_result = self.one_pair_result
-        three_card_result = self.three_card_result
+        one_pair_result = self.one_pair.result
+        three_card_result = self.three_card.result
         self.full_house.check(hand, one_pair_result, three_card_result)
         if self.full_house.result:
             return self.full_house
