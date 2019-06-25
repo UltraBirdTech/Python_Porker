@@ -225,6 +225,7 @@ class PorkerHand():
     def display(self):
         print('My hand is ' + self.porker_hand)
 
+
 class StraightFlash(PorkerHand):
     def __init__(self):
         super().__init__('StraightFlash')
