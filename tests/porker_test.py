@@ -140,6 +140,11 @@ class TestHand(unittest.TestCase):
     def test_print_hand(self):
         pass
 
+    def test_check_porker_hand(self):
+        self.initialize_hand()
+        self.hand.check_porker_hand()
+        self.assertEqual(type(self.hand.porker_hand), type(Peke()))
+
     def test_get_numbers(self):
         self.initialize_hand()
         numbers = self.hand.get_numbers()
