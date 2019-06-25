@@ -171,6 +171,19 @@ class TestCheck(unittest.TestCase):
     def setUp(self):
         self.check = Check()
 
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+
+    def initialize_hand(self):
+        self.hand.hand = ([
+            Card('♠', 'A'),
+            Card('♣︎', '2'),
+            Card('♦︎', 'K'),
+            Card('♥', '10'),
+            Card('♠', 'J')
+        ])
+
     def test_initialize_porker_hands(self):
         self.check.initialize_porker_hands()
         self.assertEqual(type(self.check.straight_flash), type(StraightFlash()))
@@ -182,6 +195,12 @@ class TestCheck(unittest.TestCase):
         self.assertEqual(type(self.check.two_pair), type(TwoPair()))
         self.assertEqual(type(self.check.one_pair), type(OnePair()))
         self.assertEqual(type(self.check.peke), type(Peke()))
+
+    def test_check(self):
+        self.initialize_hand()
+        self.hand.print_my_hand()
+        self.assertEqual(type(self.check.check(self.hand)), type(Peke()))
+        
 
 # Check Porker Hand class
 class TestPorkerHand(unittest.TestCase):
