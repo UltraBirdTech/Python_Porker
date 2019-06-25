@@ -213,7 +213,7 @@ class Check():
 
 class PorkerHand():
     def __init__(self, porker_hand):
-        self.porker_hand = porker_hand 
+        self.porker_hand = porker_hand
         self.result = False
 
     def check_conditions(self, hand):
