@@ -236,7 +236,7 @@ class StraightFlash(PorkerHand):
 
         if self.is_royal(hand):
             self.porker_hand = 'RoyalStraightFlash'
-        
+
         self.result = True
 
     def check(self, hand, straight_result, flash_result):
