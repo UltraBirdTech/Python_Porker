@@ -6,6 +6,7 @@ from porker import Deck
 from porker import Player
 from porker import Hand
 from porker import PorkerHand
+from porker import Check
 from porker import StraightFlash
 from porker import Flash
 from porker import Straight
@@ -167,7 +168,12 @@ class TestHand(unittest.TestCase):
         self.assertEqual(suits, ['♠', '♣︎', '♦︎', '♥', '♠'])
 
 class TestCheck(unittest.TestCase):
-    pass
+    def setUp(self):
+        self.check = Check()
+
+    def test_initialize_porker_hands(self):
+        self.check.initialize_porker_hands()
+        self.assertEqual(type(self.check.straight_flash), type(StraightFlash()))
 
 # Check Porker Hand class
 class TestPorkerHand(unittest.TestCase):
