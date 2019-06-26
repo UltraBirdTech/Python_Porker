@@ -249,6 +249,7 @@ class StraightFlash(PorkerHand):
         check_list.sort()
         return check_list == hand_list
 
+
 class Flash(PorkerHand):
     def __init__(self):
         super().__init__('Flash')
@@ -256,6 +257,7 @@ class Flash(PorkerHand):
     def check_conditions(self, hand):
         suits = hand.get_all_suits() 
         self.result = (len(set(suits)) == 1) # 重複をはじいた結果が1であればフラッシュ
+
 
 class Straight(PorkerHand):
     def __init__(self):
