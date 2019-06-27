@@ -274,6 +274,7 @@ class Straight(PorkerHand):
             number_list = list(range(numbers[0], numbers[0] + 5))
         self.result = (numbers == number_list)
 
+
 class Kind(PorkerHand):
     def __init__(self, porker_hand):
         super().__init__(porker_hand)
