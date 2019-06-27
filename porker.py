@@ -255,7 +255,7 @@ class Flash(PorkerHand):
         super().__init__('Flash')
 
     def check_conditions(self, hand):
-        suits = hand.get_all_suits() 
+        suits = hand.get_all_suits()
         self.result = (len(set(suits)) == 1) # 重複をはじいた結果が1であればフラッシュ
 
 
