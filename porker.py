@@ -269,7 +269,7 @@ class Straight(PorkerHand):
         number_list = []
         if (1 in numbers) and (13 in numbers):
             number_list = list(range(10, 10 + 4))
-            number_list.insert(0,1)
+            number_list.insert(0, 1)
         else:
             number_list = list(range(numbers[0], numbers[0] + 5))
         self.result = (numbers == number_list)
