@@ -286,6 +286,7 @@ class Kind(PorkerHand):
                 self.result = True
                 break
 
+
 class FourCard(Kind):
     def __init__(self):
         super().__init__('FourCard')
