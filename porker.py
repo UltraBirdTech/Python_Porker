@@ -283,8 +283,8 @@ class Kind(PorkerHand):
         numbers = hand.get_numbers_as_int()
         for num in numbers:
             if numbers.count(num) == self.card_num:
-               self.result = True
-               break
+                self.result = True
+                break
 
 class FourCard(Kind):
     def __init__(self):
