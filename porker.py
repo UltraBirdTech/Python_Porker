@@ -315,6 +315,7 @@ class FullHouse(PorkerHand):
     def check(self, hand, onepair_result, three_card_result):
         self.check_conditions(hand, onepair_result, three_card_result)
 
+
 class Pair(PorkerHand):
     def __init__(self, porker_hand):
         super().__init__(porker_hand)
@@ -328,6 +329,7 @@ class Pair(PorkerHand):
             else:
                 check_dict[n] = 1
         self.result = list(check_dict.values()).count(2) == self.pair_num
+
 
 class TwoPair(Pair):
     def __init__(self):
