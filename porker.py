@@ -333,8 +333,8 @@ class Pair(PorkerHand):
 
 class TwoPair(Pair):
     def __init__(self):
-       super().__init__('TwoPair')
-       self.pair_num = 2
+        super().__init__('TwoPair')
+        self.pair_num = 2
 
     def check_conditions(self, hand):
         super().check_conditions(hand)
