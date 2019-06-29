@@ -295,6 +295,7 @@ class FourCard(Kind):
     def check_conditions(self, hand):
         super().check_conditions(hand)
 
+
 class ThreeCard(Kind):
     def __init__(self):
         super().__init__('ThreeCard')
@@ -302,6 +303,7 @@ class ThreeCard(Kind):
 
     def check_conditions(self, hand):
         super().check_conditions(hand)
+
 
 class FullHouse(PorkerHand):
     def __init__(self):
