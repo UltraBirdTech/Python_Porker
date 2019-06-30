@@ -342,8 +342,8 @@ class TwoPair(Pair):
 
 class OnePair(Pair):
     def __init__(self):
-       super().__init__('OnePair')
-       self.pair_num = 1
+        super().__init__('OnePair')
+        self.pair_num = 1
 
     def check_conditions(self, hand):
         super().check_conditions(hand)
