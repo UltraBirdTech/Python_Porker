@@ -339,6 +339,7 @@ class TwoPair(Pair):
     def check_conditions(self, hand):
         super().check_conditions(hand)
 
+
 class OnePair(Pair):
     def __init__(self):
        super().__init__('OnePair')
@@ -346,6 +347,7 @@ class OnePair(Pair):
 
     def check_conditions(self, hand):
         super().check_conditions(hand)
+
 
 class Peke(PorkerHand):
     def __init__(self):
