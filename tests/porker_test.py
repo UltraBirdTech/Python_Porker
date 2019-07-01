@@ -49,6 +49,7 @@ class TestCard(unittest.TestCase):
         self.assertEqual(self.card3.card_number(), 13)
         self.assertEqual(self.card4.card_number(), 10)
 
+
 class TestDeck(unittest.TestCase):
     def setUp(self):
         self.deck = Deck()
@@ -60,6 +61,7 @@ class TestDeck(unittest.TestCase):
     def test_draw(self):
         self.assertEqual(type(self.deck.draw()), type(Card('♠︎', 'A')))
         self.assertEqual(len(self.deck.deck_list), ((4 * 13) - 1))
+
 
 class TestPlayer(unittest.TestCase):
     def setUp(self):
