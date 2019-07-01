@@ -31,7 +31,6 @@ class TestCard(unittest.TestCase):
         self.assertEqual(self.card3.num, 'K')
         self.assertEqual(self.card4.num, '10')
 
-
     def test_set_card_suit(self):
         self.assertEqual(self.card1.suit, '♠︎')
         self.assertEqual(self.card2.suit, '♣︎')
