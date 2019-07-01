@@ -17,6 +17,7 @@ from porker import TwoPair
 from porker import OnePair
 from porker import Peke
 
+
 class TestCard(unittest.TestCase):
     def setUp(self):
         self.card1 = Card('♠︎', 'A')
