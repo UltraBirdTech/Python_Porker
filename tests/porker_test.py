@@ -82,9 +82,10 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(len(hand.all()), hand.max_hand + 1)
 
     def test_cut(self):
-        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand) # max_hand is 5
+        hand = self.player.hand
+        self.assertEqual(len(hand.all()), hand.max_hand)  # max_hand is 5
         self.player.cut(0)
-        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand - 1)
+        self.assertEqual(len(hand.all()), hand.max_hand - 1)
 
     # mock method
     def input(self):
