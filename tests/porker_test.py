@@ -93,9 +93,10 @@ class TestPlayer(unittest.TestCase):
         return '0'
 
     def test_exchange(self):
-        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand)
+        hand = self.player.hand
+        self.assertEqual(len(hand.all()), hand.max_hand)
         #self.player.exchange(self.deck)
-        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand)
+        self.assertEqual(len(hand.all()), hand.max_hand)
 
     def test_print_usage(self):
         pass
