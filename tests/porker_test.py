@@ -78,7 +78,8 @@ class TestPlayer(unittest.TestCase):
 
         self.player.draw(self.deck)
         self.assertEqual(len(self.deck.deck_list), deck_list_num - 1)
-        self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand + 1)
+        hand = self.player.hand
+        self.assertEqual(len(hand.all()), hand.max_hand + 1)
 
     def test_cut(self):
         self.assertEqual(len(self.player.hand.all()), self.player.hand.max_hand) # max_hand is 5
