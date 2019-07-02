@@ -3,5 +3,5 @@
 ## USAGE
 python porker.py
 
-## UEST
+## TEST
 python -m unittest tests/porker_test.py
