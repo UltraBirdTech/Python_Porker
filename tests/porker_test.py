@@ -135,7 +135,7 @@ class TestHand(unittest.TestCase):
         self.assertEqual(len(self.hand.hand), 0)
         self.hand.add(Card('♠︎', '1'))
         self.assertEqual(len(self.hand.hand), 1)
-    
+
     def test_cut(self):
         self.hand.add(Card('♠︎', '1'))
         self.assertEqual(len(self.hand.hand), 1)
