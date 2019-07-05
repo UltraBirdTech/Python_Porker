@@ -278,8 +278,7 @@ class Kind(PorkerHand):
         super().__init__(porker_hand)
 
     def check_conditions(self, hand):
-        numbers = hand.get_numbers_as_int()
-        for num in numbers:
+        for num in hand.get_numbers_as_int():
             if numbers.count(num) == self.card_num:
                 self.result = True
                 break
