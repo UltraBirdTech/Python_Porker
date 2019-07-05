@@ -205,7 +205,6 @@ class TestCheck(unittest.TestCase):
 
     def test_check(self):
         self.initialize_hand()
-        self.hand.print_my_hand()
         self.assertEqual(type(self.check.check(self.hand)), type(Peke()))
         
 
