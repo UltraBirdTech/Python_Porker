@@ -319,7 +319,6 @@ class Pair(PorkerHand):
         super().__init__(porker_hand)
 
     def check_conditions(self, hand):
-        numbers = hand.get_numbers()
         check_dict = {}
         for n in hand.get_numbers():
             if n in check_dict:
