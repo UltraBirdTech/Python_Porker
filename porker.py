@@ -41,12 +41,10 @@ class Deck():
         suits = ['♠', '♣', '♥', '♦']
         numbers = ['A', '2', '3', '4', '5', '6', '7',
                    '8', '9', '10', 'J', 'Q', 'K']
-        deck_list = []
+        self.deck_list = []
         for s in suits:
             for n in numbers:
-                deck_list.append(Card(s, n))
-
-        self.deck_list = deck_list
+                self.deck_list.append(Card(s, n))
 
     def draw(self):
         card = random.choice(self.deck_list)
