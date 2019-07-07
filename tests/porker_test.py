@@ -193,7 +193,8 @@ class TestCheck(unittest.TestCase):
 
     def test_initialize_porker_hands(self):
         self.check.initialize_porker_hands()
-        self.assertEqual(type(self.check.straight_flash), type(StraightFlash()))
+        check_sf = self.check.straight_flash
+        self.assertEqual(type(check_sf), type(StraightFlash()))
         self.assertEqual(type(self.check.flash), type(Flash()))
         self.assertEqual(type(self.check.straight), type(Straight()))
         self.assertEqual(type(self.check.four_card), type(FourCard()))
