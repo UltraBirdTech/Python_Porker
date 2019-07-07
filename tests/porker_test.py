@@ -174,6 +174,7 @@ class TestHand(unittest.TestCase):
             self.assertEqual(type(suit), str)
         self.assertEqual(suits, ['♠', '♣︎', '♦︎', '♥', '♠'])
 
+
 class TestCheck(unittest.TestCase):
     def setUp(self):
         self.check = Check()
