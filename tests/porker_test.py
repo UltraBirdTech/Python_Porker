@@ -141,7 +141,7 @@ class TestHand(unittest.TestCase):
         self.assertEqual(len(self.hand.hand), 1)
         self.hand.cut(0)
         self.assertEqual(len(self.hand.hand), 0)
-    
+
     def test_all(self):
         self.assertEqual(type(self.hand.hand), type([]))
 
