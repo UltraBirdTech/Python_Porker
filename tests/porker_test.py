@@ -209,7 +209,7 @@ class TestCheck(unittest.TestCase):
         self.initialize_hand()
         self.assertEqual(type(self.check.check(self.hand)), type(Peke()))
 
-# Check Porker Hand class
+
 class TestPorkerHand(unittest.TestCase):
     def setUp(self):
         deck = Deck()
