@@ -230,6 +230,7 @@ class TestPorkerHand(unittest.TestCase):
     def display(self):
         pass
 
+
 class TestStraightFlash(unittest.TestCase):
     def setUp(self):
         deck = Deck()
