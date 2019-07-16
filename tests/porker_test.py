@@ -246,12 +246,12 @@ class TestStraightFlash(unittest.TestCase):
         self.assertEqual(self.straight_flash.porker_hand, 'StraightFlash')
 
     def test_check_is_True(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♠︎', '2'),
-                             Card('♠︎', '3'),
-                             Card('♠︎', '4'),
-                             Card('♠︎', '5')]
-        
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♠︎', '2'),
+                          Card('♠︎', '3'),
+                          Card('♠︎', '4'),
+                          Card('♠︎', '5')]
+
         self.flash.check(self.hand)
         self.straight.check(self.hand)
         self.straight_flash.check(self.hand, self.flash.result, self.straight.result)
