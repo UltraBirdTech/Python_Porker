@@ -258,7 +258,7 @@ class TestStraightFlash(unittest.TestCase):
         straight_result = self.straight.result
         self.straight_flash.check(self.hand, flash.result, straight.result)
         self.assertEqual(self.straight_flash.result, True)
-    
+
     def test_check_is_False(self):
         self.hand.hand =    [Card('♠︎', 'A'),
                              Card('♦', '3'),
