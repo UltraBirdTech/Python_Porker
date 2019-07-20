@@ -273,11 +273,11 @@ class TestStraightFlash(unittest.TestCase):
         self.assertEqual(self.straight_flash.result, False)
 
     def test_check_royal_straight_flash(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♠︎', '10'),
-                             Card('♠︎', 'J'),
-                             Card('♠︎', 'Q'),
-                             Card('♠︎', 'K')]
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♠︎', '10'),
+                          Card('♠︎', 'J'),
+                          Card('♠︎', 'Q'),
+                          Card('♠︎', 'K')]
         
         self.flash.check(self.hand)
         self.straight.check(self.hand)
