@@ -278,7 +278,7 @@ class TestStraightFlash(unittest.TestCase):
                           Card('♠︎', 'J'),
                           Card('♠︎', 'Q'),
                           Card('♠︎', 'K')]
-        
+
         self.flash.check(self.hand)
         self.straight.check(self.hand)
         self.straight_flash.check(self.hand, self.flash.result, self.straight.result)
