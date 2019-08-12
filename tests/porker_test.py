@@ -322,7 +322,7 @@ class TestFlash(unittest.TestCase):
                           Card('♠︎', '9')]
         self.flash.check(self.hand)
         self.assertEqual(self.flash.result, True)
-    
+
     def test_check_is_False(self):
         self.hand.hand =    [Card('♠︎', 'A'),
                              Card('♦', '3'),
