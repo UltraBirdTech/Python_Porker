@@ -332,6 +332,7 @@ class TestFlash(unittest.TestCase):
         self.flash.check(self.hand)
         self.assertEqual(self.flash.result, False)
 
+
 class TestStraight(unittest.TestCase):
     def setUp(self):
         deck = Deck()
