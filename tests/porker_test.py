@@ -345,11 +345,11 @@ class TestStraight(unittest.TestCase):
         self.assertEqual(self.straight.porker_hand, 'Straight')
 
     def test_check_is_True(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♦', '2'),
-                             Card('♠︎', '3'),
-                             Card('♠︎', '4'),
-                             Card('♠︎', '5')]
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '2'),
+                          Card('♠︎', '3'),
+                          Card('♠︎', '4'),
+                          Card('♠︎', '5')]
         self.straight.check(self.hand)
         self.assertEqual(self.straight.result, True)
 
