@@ -354,11 +354,11 @@ class TestStraight(unittest.TestCase):
         self.assertEqual(self.straight.result, True)
 
     def test_check_is_True_first_10(self):
-        self.hand.hand =    [Card('♠︎', '10'),
-                             Card('♦', 'J'),
-                             Card('♠︎', 'Q'),
-                             Card('♠︎', 'K'),
-                             Card('♠︎', 'A')]
+        self.hand.hand = [Card('♠︎', '10'),
+                          Card('♦', 'J'),
+                          Card('♠︎', 'Q'),
+                          Card('♠︎', 'K'),
+                          Card('♠︎', 'A')]
         self.straight.check(self.hand)
         self.assertEqual(self.straight.result, True)
     
