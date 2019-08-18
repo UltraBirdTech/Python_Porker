@@ -371,6 +371,7 @@ class TestStraight(unittest.TestCase):
         self.straight.check(self.hand)
         self.assertEqual(self.straight.result, False)
 
+
 class TestFourCard(unittest.TestCase):
     def setUp(self):
         deck = Deck()
