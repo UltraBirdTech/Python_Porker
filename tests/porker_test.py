@@ -384,11 +384,11 @@ class TestFourCard(unittest.TestCase):
         self.assertEqual(self.four_card.porker_hand, 'FourCard')
 
     def test_check_is_True(self):
-        self.hand.hand =    [Card('♠︎', '3'),
-                             Card('♣︎', '3'),
-                             Card('♦︎', '3'),
-                             Card('♥', '3'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          Card('♦︎', '3'),
+                          Card('♥', '3'),
+                          Card('♠︎', '9')]
         self.four_card.check(self.hand)
         self.assertEqual(self.four_card.result, True)
     
