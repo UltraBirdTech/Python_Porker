@@ -401,6 +401,7 @@ class TestFourCard(unittest.TestCase):
         self.four_card.check(self.hand)
         self.assertEqual(self.four_card.result, False)
 
+
 class TestThreeCard(unittest.TestCase):
     def setUp(self):
         deck = Deck()
