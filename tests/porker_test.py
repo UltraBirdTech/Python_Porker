@@ -421,7 +421,7 @@ class TestThreeCard(unittest.TestCase):
                           Card('♠︎', '9')]
         self.three_card.check(self.hand)
         self.assertEqual(self.three_card.result, True)
-    
+
     def test_check_is_False(self):
         self.hand.hand =    [Card('♠︎', 'A'),
                              Card('♦', '3'),
