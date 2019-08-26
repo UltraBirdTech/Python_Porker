@@ -431,6 +431,7 @@ class TestThreeCard(unittest.TestCase):
         self.three_card.check(self.hand)
         self.assertEqual(self.three_card.result, False)
 
+
 class TestFulleHouse(unittest.TestCase):
     def setUp(self):
         deck = Deck()
