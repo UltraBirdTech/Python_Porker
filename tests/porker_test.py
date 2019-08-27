@@ -438,7 +438,7 @@ class TestFulleHouse(unittest.TestCase):
         player = Player(deck)
         self.hand = player.hand
         self.full_house = FullHouse()
-        
+
         self.three_card = ThreeCard()
         self.one_pair = OnePair()
 
