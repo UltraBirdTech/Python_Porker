@@ -453,7 +453,7 @@ class TestFulleHouse(unittest.TestCase):
                           Card('♥', '5'),
                           Card('♠︎', '5')]
         self.three_card.check(self.hand)
-        self.one_pair.check(self.hand)       
+        self.one_pair.check(self.hand)
         self.full_house.check(self.hand, self.one_pair.result , self.three_card.result) 
         self.assertEqual(self.full_house.result, True)
     
