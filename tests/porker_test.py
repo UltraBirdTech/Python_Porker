@@ -468,6 +468,7 @@ class TestFulleHouse(unittest.TestCase):
         self.full_house.check(self.hand, self.one_pair.result, self.three_card.result)
         self.assertEqual(self.full_house.result, False)
 
+
 class TestTwoPair(unittest.TestCase):
     def setUp(self):
         deck = Deck()
