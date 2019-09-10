@@ -458,11 +458,11 @@ class TestFulleHouse(unittest.TestCase):
         self.assertEqual(self.full_house.result, True)
 
     def test_check_is_False(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♦', '3'),
-                             Card('♠︎', '5'),
-                             Card('♦', '7'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          Card('♠︎', '9')]
         self.three_card.check(self.hand)
         self.one_pair.check(self.hand)
         self.full_house.check(self.hand, self.one_pair.result, self.three_card.result)
