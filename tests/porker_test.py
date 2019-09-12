@@ -488,7 +488,7 @@ class TestTwoPair(unittest.TestCase):
                           Card('♠︎', '9')]
         self.two_pair.check(self.hand)
         self.assertEqual(self.two_pair.result, True)
-    
+
     def test_check_is_False(self):
         self.hand.hand =    [Card('♠︎', 'A'),
                              Card('♦', '3'),
