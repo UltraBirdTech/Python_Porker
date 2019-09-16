@@ -507,6 +507,7 @@ class TestTwoPair(unittest.TestCase):
         self.two_pair.check(self.hand)
         self.assertEqual(self.two_pair.result, False)
 
+
 class TestOnePair(unittest.TestCase):
     def setUp(self):
         deck = Deck()
