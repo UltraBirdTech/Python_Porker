@@ -520,11 +520,11 @@ class TestOnePair(unittest.TestCase):
         self.assertEqual(self.one_pair.porker_hand, 'OnePair')
 
     def test_check_is_True(self):
-        self.hand.hand =    [Card('♠︎', '3'),
-                             Card('♣︎', '3'),
-                             Card('♦︎', '5'),
-                             Card('♥', '4'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          Card('♦︎', '5'),
+                          Card('♥', '4'),
+                          Card('♠︎', '9')]
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, True)
     
