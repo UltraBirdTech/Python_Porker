@@ -529,11 +529,11 @@ class TestOnePair(unittest.TestCase):
         self.assertEqual(self.one_pair.result, True)
 
     def test_check_is_False(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♦', '3'),
-                             Card('♠︎', '5'),
-                             Card('♦', '7'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          Card('♠︎', '9')]
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, False)
 
