@@ -546,6 +546,7 @@ class TestOnePair(unittest.TestCase):
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, False)
 
+
 class TestPeke(unittest.TestCase):
     def setUp(self):
         self.peke = Peke()
