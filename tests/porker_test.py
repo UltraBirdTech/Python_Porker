@@ -281,7 +281,9 @@ class TestStraightFlash(unittest.TestCase):
 
         self.flash.check(self.hand)
         self.straight.check(self.hand)
-        self.straight_flash.check(self.hand, self.flash.result, self.straight.result)
+        self.straight_flash.check(self.hand, 
+                                    self.flash.result, 
+                                    self.straight.result)
         self.assertEqual(self.straight_flash.result, True)
         self.assertEqual(self.straight_flash.porker_hand, 'RoyalStraightFlash')
         self.assertEqual(self.straight_flash.is_royal(self.hand), True)
