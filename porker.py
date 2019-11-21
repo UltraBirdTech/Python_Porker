@@ -85,7 +85,7 @@ class Player():
         print('複数ある場合は","区切りで入力してください')
         for i, c in enumerate(self.hand.all()):
             print(str(i) + ': [' + c.value + ']')
-        print('p: 手札交換をスキップします')
+        print('p: (pass)手札交換をスキップします')
 
     def check_input_value(self, input_list):
         correct_values = ['0', '1', '2', '3', '4', 'p']
