@@ -281,7 +281,9 @@ class TestStraightFlash(unittest.TestCase):
 
         self.flash.check(self.hand)
         self.straight.check(self.hand)
-        self.straight_flash.check(self.hand, self.flash.result, self.straight.result)
+        self.straight_flash.check(self.hand,
+                                  self.flash.result,
+                                  self.straight.result)
         self.assertEqual(self.straight_flash.result, True)
         self.assertEqual(self.straight_flash.porker_hand, 'RoyalStraightFlash')
         self.assertEqual(self.straight_flash.is_royal(self.hand), True)
@@ -454,7 +456,9 @@ class TestFulleHouse(unittest.TestCase):
                           Card('♠︎', '5')]
         self.three_card.check(self.hand)
         self.one_pair.check(self.hand)
-        self.full_house.check(self.hand, self.one_pair.result, self.three_card.result)
+        self.full_house.check(self.hand,
+                              self.one_pair.result,
+                              self.three_card.result)
         self.assertEqual(self.full_house.result, True)
 
     def test_check_is_False(self):
@@ -465,7 +469,9 @@ class TestFulleHouse(unittest.TestCase):
                           Card('♠︎', '9')]
         self.three_card.check(self.hand)
         self.one_pair.check(self.hand)
-        self.full_house.check(self.hand, self.one_pair.result, self.three_card.result)
+        self.full_house.check(self.hand,
+                              self.one_pair.result,
+                              self.three_card.result)
         self.assertEqual(self.full_house.result, False)
 
 
@@ -490,22 +496,23 @@ class TestTwoPair(unittest.TestCase):
         self.assertEqual(self.two_pair.result, True)
 
     def test_check_is_False(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♦', '3'),
-                             Card('♠︎', '5'),
-                             Card('♦', '7'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          Card('♠︎', '9')]
         self.two_pair.check(self.hand)
         self.assertEqual(self.two_pair.result, False)
 
     def test_check_is_False_when_one_pair(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♦', 'A'),
-                             Card('♠︎', '3'),
-                             Card('♦', '5'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', 'A'),
+                          Card('♠︎', '3'),
+                          Card('♦', '5'),
+                          Card('♠︎', '9')]
         self.two_pair.check(self.hand)
         self.assertEqual(self.two_pair.result, False)
+
 
 class TestOnePair(unittest.TestCase):
     def setUp(self):
@@ -519,31 +526,32 @@ class TestOnePair(unittest.TestCase):
         self.assertEqual(self.one_pair.porker_hand, 'OnePair')
 
     def test_check_is_True(self):
-        self.hand.hand =    [Card('♠︎', '3'),
-                             Card('♣︎', '3'),
-                             Card('♦︎', '5'),
-                             Card('♥', '4'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          Card('♦︎', '5'),
+                          Card('♥', '4'),
+                          Card('♠︎', '9')]
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, True)
-    
+
     def test_check_is_False(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♦', '3'),
-                             Card('♠︎', '5'),
-                             Card('♦', '7'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          Card('♠︎', '9')]
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, False)
 
     def test_check_is_False_when_two_pair(self):
-        self.hand.hand =    [Card('♠︎', 'A'),
-                             Card('♦', 'A'),
-                             Card('♠︎', '5'),
-                             Card('♦', '5'),
-                             Card('♠︎', '9')]
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', 'A'),
+                          Card('♠︎', '5'),
+                          Card('♦', '5'),
+                          Card('♠︎', '9')]
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, False)
+
 
 class TestPeke(unittest.TestCase):
     def setUp(self):
