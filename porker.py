@@ -176,6 +176,10 @@ class Hand():
 
 class Check():
     def __init__(self):
+        if self.hand.is_joker():
+            #self.initialize_joker_porker_hands()
+            self.initialize_porker_hands()
+            return
         self.initialize_porker_hands()
 
     def check(self, hand):
@@ -230,6 +234,16 @@ class Check():
         self.one_pair = OnePair()
         self.peke = Peke()
 
+    def initialize_joker_porker_hands(self):
+        self.straight_flash = StraightFlash()
+        self.flash = Flash()
+        self.straight = Straight()
+        self.four_card = FourCard()
+        self.full_house = FullHouse()
+        self.three_card = ThreeCard()
+        self.two_pair = TwoPair()
+        self.one_pair = OnePair()
+        self.peke = Peke()
 
 class PorkerHand():
     def __init__(self, porker_hand):
