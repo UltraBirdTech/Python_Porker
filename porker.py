@@ -35,6 +35,21 @@ class Card():
         }
         return card_mapping[self.num]
 
+    def is_joker(self):
+        return False
+
+class JokerCard(Card):
+     def __init__(self):
+        self.joker = 'Joker'
+        self.suit = self.joker
+        self.num = self.joker
+        self.value = self.joker
+
+     def card_number(self):
+        return self.joker
+
+     def is_joker(self):
+        return True
 
 class Deck():
     def __init__(self):
@@ -45,6 +60,7 @@ class Deck():
         for s in suits:
             for n in numbers:
                 self.deck_list.append(Card(s, n))
+        self.deck_list.append(JokerCard())
 
     def draw(self):
         card = random.choice(self.deck_list)
@@ -150,6 +166,12 @@ class Hand():
         for h in self.hand:
             suits.append(h.suit)
         return suits
+
+    def is_joker(self):
+        for card in self.hand:
+            if card.is_joker():
+                return True
+        return False
 
 
 class Check():
