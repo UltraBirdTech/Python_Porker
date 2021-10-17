@@ -173,6 +173,12 @@ class Hand():
                 return True
         return False
 
+    def get_higher_number(self):
+        numbers = []
+        first_element = self.hand[0].card_number()
+        for c in self.hand:
+            numbers.append(c.card_number())
+        return 2
 
 class Check():
     def __init__(self, is_joker=False):
