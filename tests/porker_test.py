@@ -201,6 +201,10 @@ class TestHand(unittest.TestCase):
         self.initialize_hand()
         self.assertEqual(self.hand.is_joker(), False)
 
+    def test_get_higher_number(self):
+        self.initialize_hand()
+        self.assertEqual(self.hand.get_higher_number(), 2)
+
 class TestCheck(unittest.TestCase):
     def setUp(self):
         self.check = Check()
