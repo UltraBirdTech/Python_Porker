@@ -2,6 +2,7 @@
 import unittest
 
 from porker import Card
+from porker import JokerCard
 from porker import Deck
 from porker import Player
 from porker import Hand
@@ -49,18 +50,34 @@ class TestCard(unittest.TestCase):
         self.assertEqual(self.card3.card_number(), 13)
         self.assertEqual(self.card4.card_number(), 10)
 
+    def test_is_joker(self):
+        self.assertFalse(self.card1.is_joker())
+
+class TestJokerCard(unittest.TestCase):
+    def setUp(self):
+        self.card = JokerCard()
+
+    def test_initialize(self):
+        self.assertEqual(self.card.num, 'Joker')
+        self.assertEqual(self.card.suit, 'Joker')
+        self.assertEqual(self.card.value, 'Joker')
+        self.assertEqual(self.card.card_number(), 'Joker')
+
+    def test_is_joker(self):
+        self.assertTrue(self.card.is_joker())
+
 
 class TestDeck(unittest.TestCase):
     def setUp(self):
         self.deck = Deck()
 
     def test_check_deck_num(self):
-        # ['♠︎', '♣︎', '♦︎', '♥''] * [A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K]
-        self.assertEqual(len(self.deck.deck_list), 4 * 13)
+        # ['♠︎', '♣︎', '♦︎', '♥''] * [A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K] + [Joker]
+        self.assertEqual(len(self.deck.deck_list), 4 * 13 + 1)
 
     def test_draw(self):
         self.assertEqual(type(self.deck.draw()), type(Card('♠︎', 'A')))
-        self.assertEqual(len(self.deck.deck_list), ((4 * 13) - 1))
+        self.assertEqual(len(self.deck.deck_list), ((4 * 13 + 1) - 1))
 
 
 class TestPlayer(unittest.TestCase):
@@ -174,6 +191,15 @@ class TestHand(unittest.TestCase):
             self.assertEqual(type(suit), str)
         self.assertEqual(suits, ['♠', '♣︎', '♦︎', '♥', '♠'])
 
+    def test_is_joker(self):
+        self.initialize_hand()
+        self.hand.cut(0)
+        self.hand.add(JokerCard())
+        self.assertEqual(self.hand.is_joker(), True)
+
+    def test_is_not_joker(self):
+        self.initialize_hand()
+        self.assertEqual(self.hand.is_joker(), False)
 
 class TestCheck(unittest.TestCase):
     def setUp(self):
