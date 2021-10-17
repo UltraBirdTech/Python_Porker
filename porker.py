@@ -147,7 +147,7 @@ class Hand():
         print()
 
     def check_porker_hand(self):
-        self.porker_hand = Check().check(self)
+        self.porker_hand = Check(self.is_joker()).check(self)
 
     def get_numbers(self):
         numbers = []
@@ -175,8 +175,8 @@ class Hand():
 
 
 class Check():
-    def __init__(self):
-        if self.hand.is_joker():
+    def __init__(self, is_joker=False):
+        if is_joker:
             #self.initialize_joker_porker_hands()
             self.initialize_porker_hands()
             return
