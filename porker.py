@@ -33,6 +33,21 @@ class Card():
         }
         return card_mapping[self.num]
 
+    def is_joker(self):
+        return False
+
+class JokerCard(Card):
+     def __init__(self):
+        self.joker = 'Joker'
+        self.suit = self.joker
+        self.num = self.joker
+        self.value = self.joker
+
+     def card_number(self):
+        return self.joker
+
+     def is_joker(self):
+        return True
 
 class Deck():
     def __init__(self):
@@ -43,6 +58,7 @@ class Deck():
         for s in suits:
             for n in numbers:
                 self.deck_list.append(Card(s, n))
+        self.deck_list.append(JokerCard())
 
     def draw(self):
         card = random.choice(self.deck_list)
@@ -129,7 +145,7 @@ class Hand():
         print()
 
     def check_porker_hand(self):
-        self.porker_hand = Check().check(self)
+        self.porker_hand = Check(self.is_joker()).check(self)
 
     def get_numbers(self):
         numbers = []
@@ -149,9 +165,19 @@ class Hand():
             suits.append(h.suit)
         return suits
 
+    def is_joker(self):
+        for card in self.hand:
+            if card.is_joker():
+                return True
+        return False
+
 
 class Check():
-    def __init__(self):
+    def __init__(self, is_joker=False):
+        if is_joker:
+            #self.initialize_joker_porker_hands()
+            self.initialize_porker_hands()
+            return
         self.initialize_porker_hands()
 
     def check(self, hand):
@@ -206,6 +232,16 @@ class Check():
         self.one_pair = OnePair()
         self.peke = Peke()
 
+    def initialize_joker_porker_hands(self):
+        self.straight_flash = StraightFlash()
+        self.flash = Flash()
+        self.straight = Straight()
+        self.four_card = FourCard()
+        self.full_house = FullHouse()
+        self.three_card = ThreeCard()
+        self.two_pair = TwoPair()
+        self.one_pair = OnePair()
+        self.peke = Peke()
 
 class PorkerHand():
     def __init__(self, porker_hand):
