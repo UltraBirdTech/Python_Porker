@@ -7,8 +7,6 @@ def main():
         player = Player(deck)
         player.exchange(deck)
         player.print_my_hand()
-        player.exchange(deck)
-        player.print_my_hand()
         player.check_poker_hand()
         player.print_result()
     except InputValueError as err:
