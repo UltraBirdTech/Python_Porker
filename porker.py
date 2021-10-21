@@ -233,14 +233,14 @@ class Check():
         self.peke = Peke()
 
     def initialize_joker_porker_hands(self):
-        self.straight_flash = StraightFlash()
-        self.flash = Flash()
-        self.straight = Straight()
-        self.four_card = FourCard()
-        self.full_house = FullHouse()
-        self.three_card = ThreeCard()
-        self.two_pair = TwoPair()
-        self.one_pair = OnePair()
+        self.straight_flash = JokerStraightFlash()
+        self.flash = JokerFlash()
+        self.straight = JokerStraight()
+        self.four_card = JokerFourCard()
+        self.full_house = JokerFullHouse()
+        self.three_card = JokerThreeCard()
+        self.two_pair = JokerTwoPair()
+        self.one_pair = JokerOnePair()
         self.peke = Peke()
 
 class PorkerHand():
