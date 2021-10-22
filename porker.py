@@ -33,6 +33,16 @@ class Card():
         }
         return card_mapping[self.num]
 
+    def __lt__(self, other):
+        if not isinstance(other, Card):
+            return
+        return self.card_number() < other.card_number()
+
+    def __eq__(self, other):
+        if not isinstance(other, Card):
+            return
+        return self.card_number() == other.card_number()
+
     def is_joker(self):
         return False
 
