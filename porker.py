@@ -36,6 +36,18 @@ class Card():
     def __lt__(self, other):
         if not isinstance(other, Card):
             return
+        if self.card_number() == 2:
+            return False
+
+        if other.card_number() == 2:
+            return True
+ 
+        if self.card_number() == 1:
+            return ohter.card_number != 2
+ 
+        if other.card_number() == 1:
+            return self.card_number != 2
+ 
         return self.card_number() < other.card_number()
 
     def __eq__(self, other):
