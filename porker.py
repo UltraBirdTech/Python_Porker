@@ -173,10 +173,17 @@ class Hand():
 
     def get_higher_number(self):
         numbers = []
-        first_element = self.hand[0].card_number()
-        for c in self.hand:
-            numbers.append(c.card_number())
-        return 2
+#        first_element = self.hand[0].card_number()
+        highest_number = self.hand[0].card_number()
+        for c in self.hand[1:-1]:
+            print('-' * 10) 
+            print(highest_number)
+            print(c.card_number())
+            print(highest_number < c.card_number())
+            if highest_number < c.card_number():
+#                numbers.append(c.card_number())
+                highest_number = c.card_number()
+        return highest_number
 
 class Check():
     def __init__(self, is_joker=False):

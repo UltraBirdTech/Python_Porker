@@ -204,6 +204,27 @@ class TestHand(unittest.TestCase):
     def test_get_higher_number(self):
         self.initialize_hand()
         self.assertEqual(self.hand.get_higher_number(), 2)
+ 
+    def test_get_higher_number_king(self):
+        self.hand.hand += ([
+            Card('♠', '7'),
+            Card('♣︎', '6'),
+            Card('♦︎', 'K'),
+            Card('♥', '10'),
+            Card('♠', 'J')
+        ])
+        self.assertEqual(self.hand.get_higher_number(), 13)
+
+    def test_get_higher_number_nine(self):
+        self.hand.hand += ([
+            Card('♠', '7'),
+            Card('♣︎', '6'),
+            Card('♦︎', '3'),
+            Card('♥', '9'),
+            Card('♠', '6')
+        ])
+        self.assertEqual(self.hand.get_higher_number(), 9)
+
 
 class TestCheck(unittest.TestCase):
     def setUp(self):
