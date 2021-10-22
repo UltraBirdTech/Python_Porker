@@ -53,6 +53,36 @@ class TestCard(unittest.TestCase):
     def test_is_joker(self):
         self.assertFalse(self.card1.is_joker())
 
+    def test_order_number(self):
+        self.assertTrue(Card('♥', '6') < Card('♥', '8'))
+
+    def test_order_number_reverse(self):
+        self.assertFalse(Card('♥', '8') < Card('♥', '6'))
+
+    def test_order_number_one_than_king(self):
+        self.assertTrue(Card('♥', 'K') < Card('♥', '1'))
+
+    def test_order_number_one_than_king_reverse(self):
+        self.assertFalse(Card('♥', '1') < Card('♥', 'K'))
+
+    def test_order_number_two_than_king(self):
+        self.assertTrue(Card('♥', 'K') < Card('♥', '2'))
+
+    def test_order_number_two_than_king_reverse(self):
+        self.assertFalse(Card('♥', '2') < Card('♥', 'K'))
+
+    def test_order_number_than_king(self):
+        self.assertTrue(Card('♥', '8') < Card('♥', 'K'))
+
+    def test_order_number_than_king_reverse(self):
+        self.assertFalse(Card('♥', 'K') < Card('♥', '8'))
+
+    def test_order_number_joker(self):
+        self.assertFalse(JokerCard() < Card('♥', '10'))
+
+    def test_order_number_joker_reverse(self):
+        self.assertFalse(Card('♥', '10') < JokerCard())
+
 class TestJokerCard(unittest.TestCase):
     def setUp(self):
         self.card = JokerCard()
