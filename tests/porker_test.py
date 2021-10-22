@@ -53,6 +53,18 @@ class TestCard(unittest.TestCase):
     def test_is_joker(self):
         self.assertFalse(self.card1.is_joker())
 
+    def test_order_number(self):
+        self.assertTrue(Card('♥', '6') < Card('♥', '8'))
+
+    def test_order_number_one_than_two(self):
+        self.assertTrue(Card('♥', 'K') < Card('♥', '1'))
+
+    def test_order_number_two_than_king(self):
+        self.assertTrue(Card('♥', 'K') < Card('♥', '2'))
+
+    def test_order_number_one_than_king(self):
+        self.assertTrue(Card('♥', '8') < Card('♥', '10'))
+
 class TestJokerCard(unittest.TestCase):
     def setUp(self):
         self.card = JokerCard()
