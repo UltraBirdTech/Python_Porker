@@ -65,6 +65,14 @@ class TestCard(unittest.TestCase):
     def test_order_number_one_than_king(self):
         self.assertTrue(Card('♥', '8') < Card('♥', '10'))
 
+    def test_order_number_joker(self):
+        self.assertTrue(JokerCard() < Card('♥', '10'))
+
+    def test_order_number_joker(self):
+        self.assertFalse(Card('♥', '10') < JokerCard())
+
+
+
 class TestJokerCard(unittest.TestCase):
     def setUp(self):
         self.card = JokerCard()
