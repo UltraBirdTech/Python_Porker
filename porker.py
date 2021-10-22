@@ -47,7 +47,7 @@ class Card():
             return True
  
         if self.card_number() == 1:
-            return ohter.card_number != 2
+            return other.card_number == 2
  
         if other.card_number() == 1:
             return self.card_number != 2
