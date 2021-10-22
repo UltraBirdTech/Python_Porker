@@ -71,8 +71,6 @@ class TestCard(unittest.TestCase):
     def test_order_number_joker(self):
         self.assertFalse(Card('♥', '10') < JokerCard())
 
-
-
 class TestJokerCard(unittest.TestCase):
     def setUp(self):
         self.card = JokerCard()
