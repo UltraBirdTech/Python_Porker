@@ -1,4 +1,4 @@
-# [USAGE]: python -m unittest tests/porker_test.py
+# [USAGE]: python -m unittest discover -s ./tests -p "*_test.py"
 import unittest
 
 from porker import Card
