@@ -332,7 +332,8 @@ class JokerFlash(PorkerHand):
 
     def check_conditions(self, hand):
         suits = hand.get_all_suits()
-        self.result = (len(set(suits)) == 1)  # 重複をはじいた結果が1であればフラッシュ
+        if hand.is_joker():
+            self.result = (len(set(suits)) == 2)  # Jokerを含めて重複をはじいた結果が2であればフラッシュ
 
 class Straight(PorkerHand):
     def __init__(self):
