@@ -17,6 +17,7 @@ from porker import ThreeCard
 from porker import TwoPair
 from porker import OnePair
 from porker import Peke
+from porker import JokerFlash
 
 
 class TestCard(unittest.TestCase):
@@ -396,6 +397,34 @@ class TestFlash(unittest.TestCase):
         self.flash.check(self.hand)
         self.assertEqual(self.flash.result, False)
 
+class TestJokerFlash(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.flash = JokerFlash()
+
+    def test_initialize(self):
+        self.assertEqual(self.flash.result, False)
+        self.assertEqual(self.flash.porker_hand, 'JokerFlash')
+
+    def test_check_is_True(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♠︎', '3'),
+                          Card('♠︎', '5'),
+                          Card('♠︎', '7'),
+                          JokerCard()]
+        self.flash.check(self.hand)
+        self.assertEqual(self.flash.result, True)
+
+    def test_check_is_False(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          JokerCard()]
+        self.flash.check(self.hand)
+        self.assertEqual(self.flash.result, False)
 
 class TestStraight(unittest.TestCase):
     def setUp(self):
