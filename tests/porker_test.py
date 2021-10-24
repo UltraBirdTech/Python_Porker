@@ -19,6 +19,7 @@ from porker import OnePair
 from porker import Peke
 from porker import JokerFlash
 from porker import JokerStraight
+from porker import JokerFiveCard
 
 
 class TestCard(unittest.TestCase):
@@ -562,6 +563,34 @@ class TestFourCard(unittest.TestCase):
         self.four_card.check(self.hand)
         self.assertEqual(self.four_card.result, False)
 
+class TestJokerFiveCard(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.five_card = JokerFiveCard()
+
+    def test_initialize(self):
+        self.assertEqual(self.five_card.result, False)
+        self.assertEqual(self.five_card.porker_hand, 'FiveCard')
+
+    def test_check_is_True(self):
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          Card('♦︎', '3'),
+                          Card('♥', '3'),
+                          JokerCard()]
+        self.five_card.check(self.hand)
+        self.assertEqual(self.five_card.result, True)
+
+    def test_check_is_False(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '7'),
+                          Card('♦', '7'),
+                          JokerCard()]
+        self.five_card.check(self.hand)
+        self.assertEqual(self.five_card.result, False)
 
 class TestThreeCard(unittest.TestCase):
     def setUp(self):
