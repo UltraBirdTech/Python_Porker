@@ -18,6 +18,8 @@ from porker import TwoPair
 from porker import OnePair
 from porker import Peke
 from porker import JokerFlash
+from porker import JokerStraight
+from porker import JokerFiveCard
 
 
 class TestCard(unittest.TestCase):
@@ -464,6 +466,79 @@ class TestStraight(unittest.TestCase):
         self.straight.check(self.hand)
         self.assertEqual(self.straight.result, False)
 
+class TestJokerStraight(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.straight = JokerStraight()
+
+    def test_initialize(self):
+        self.assertEqual(self.straight.result, False)
+        self.assertEqual(self.straight.porker_hand, 'JokerStraight')
+
+    def test_check_is_True_end_joker(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '2'),
+                          Card('♠︎', '3'),
+                          Card('♠︎', '4'),
+                          JokerCard()]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, True)
+
+    def test_check_is_True_start_joker(self):
+        self.hand.hand = [JokerCard(),
+                          Card('♦', '2'),
+                          Card('♠︎', '3'),
+                          Card('♠︎', '4'),
+                          Card('♠︎', '5'),]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, True)
+
+    def test_check_is_True_between_joker(self):
+        self.hand.hand = [Card('♦', '1'),
+                          Card('♦', '2'),
+                          JokerCard(),
+                          Card('♠︎', '4'),
+                          Card('♠︎', '5'),]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, True)
+
+    def test_check_is_True_first_10_end_joker(self):
+        self.hand.hand = [Card('♠︎', '10'),
+                          Card('♦', 'J'),
+                          Card('♠︎', 'Q'),
+                          Card('♠︎', 'K'),
+                          JokerCard()]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, True)
+
+    def test_check_is_True_first_10_but_joker(self):
+        self.hand.hand = [JokerCard(),
+                          Card('♦', 'J'),
+                          Card('♠︎', 'Q'),
+                          Card('♠︎', 'K'),
+                          Card('♠︎', 'A')]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, True)
+
+    def test_check_is_True_first_10_end_joker(self):
+        self.hand.hand = [Card('♠︎', '10'),
+                          Card('♦', 'J'),
+                          JokerCard(),
+                          Card('♠︎', 'K'),
+                          Card('♠︎', 'A')]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, True)
+
+    def test_check_is_False(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          JokerCard()]
+        self.straight.check(self.hand)
+        self.assertEqual(self.straight.result, False)
 
 class TestFourCard(unittest.TestCase):
     def setUp(self):
@@ -494,6 +569,34 @@ class TestFourCard(unittest.TestCase):
         self.four_card.check(self.hand)
         self.assertEqual(self.four_card.result, False)
 
+class TestJokerFiveCard(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.five_card = JokerFiveCard()
+
+    def test_initialize(self):
+        self.assertEqual(self.five_card.result, False)
+        self.assertEqual(self.five_card.porker_hand, 'FiveCard')
+
+    def test_check_is_True(self):
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          Card('♦︎', '3'),
+                          Card('♥', '3'),
+                          JokerCard()]
+        self.five_card.check(self.hand)
+        self.assertEqual(self.five_card.result, True)
+
+    def test_check_is_False(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '7'),
+                          Card('♦', '7'),
+                          JokerCard()]
+        self.five_card.check(self.hand)
+        self.assertEqual(self.five_card.result, False)
 
 class TestThreeCard(unittest.TestCase):
     def setUp(self):
