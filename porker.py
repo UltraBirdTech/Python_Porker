@@ -327,8 +327,8 @@ class JokerFlash(Flash):
         self.duplicate_suite_count = 2 # Jokerを含めて重複をはじいた結果が2であればフラッシュ
 
 class Straight(PorkerHand):
-    def __init__(self):
-        super().__init__('Straight')
+    def __init__(self, hand_name='Straight'):
+        super().__init__(hand_name)
 
     def check_conditions(self, hand):
         numbers = hand.get_numbers_as_int()
@@ -341,6 +341,22 @@ class Straight(PorkerHand):
             number_list = list(range(numbers[0], numbers[0] + 5))
         self.result = (numbers == number_list)
 
+class JokerStraight(Straight):
+    def __init__(self):
+        super().__init__('JokerStraight')
+
+    def check_conditions(self, hand):
+        numbers = hand.get_numbers_as_int()
+        numbers.remove('Joker') # joker は邪魔なのでremove()して取り除く
+        numbers.sort()
+        number_list = []
+        if (1 in numbers) and (13 in numbers):
+            number_list = list(range(10, 10 + 4))
+            number_list.insert(0, 1)
+        else:
+            number_list = list(range(numbers[0], numbers[0] + 5))
+        numbers_diff = (set(number_list) - set(numbers))
+        self.result = len(numbers_diff) == 1 # 差分が1であればストレートと判定
 
 class Kind(PorkerHand):
     def __init__(self, porker_hand):
