@@ -266,6 +266,7 @@ class Check():
         self.straight_flash = JokerStraightFlash()
         self.flash = JokerFlash()
         self.straight = JokerStraight()
+        self.five_card = JokerFiveCard()
         self.four_card = JokerFourCard()
         self.full_house = JokerFullHouse()
         self.three_card = JokerThreeCard()
@@ -369,7 +370,6 @@ class Kind(PorkerHand):
                 self.result = True
                 break
 
-
 class FourCard(Kind):
     def __init__(self):
         super().__init__('FourCard')
@@ -378,6 +378,13 @@ class FourCard(Kind):
     def check_conditions(self, hand):
         super().check_conditions(hand)
 
+class JokerFiveCard(Kind):
+    def __init__(self):
+        super().__init__('FiveCard')
+        self.card_num = 4 # Joker含めて4枚あればファイブカード
+
+    def check_conditions(self, hand):
+        super().check_conditions(hand)
 
 class ThreeCard(Kind):
     def __init__(self):
