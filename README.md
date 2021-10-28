@@ -56,4 +56,6 @@ PE☆KE
 ```
 
 ## TEST
+```
 python -m unittest discover -s ./tests -p "*_test.py"
+```
