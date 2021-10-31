@@ -274,6 +274,9 @@ class Check():
         self.one_pair = JokerOnePair()
         self.peke = Peke()
 
+    def check_kind_card(self):
+        return
+
 class PorkerHand():
     def __init__(self, porker_hand):
         self.porker_hand = porker_hand
