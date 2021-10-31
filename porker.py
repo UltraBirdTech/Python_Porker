@@ -230,7 +230,6 @@ class Check():
         if self.five_card.result:
             return self.five_card
 
-
         self.four_card.check(hand)
         if self.four_card.result:
             return self.four_card
@@ -318,10 +317,10 @@ class StraightFlash(PorkerHand):
         check_list.sort()
         return check_list == hand_list
 
+# TODO: Add rogic
 class JokerStraightFlash(StraightFlash):
     pass
     
-
 class Flash(PorkerHand):
     def __init__(self, hand_name='Flash'):
         super().__init__(hand_name)
