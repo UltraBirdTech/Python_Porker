@@ -275,10 +275,6 @@ class TestCheck(unittest.TestCase):
         self.initialize_hand()
         self.assertEqual(type(self.check.check(self.hand)), type(Peke()))
 
-    def test_check_kind_card(self):
-        self.initialize_hand()
-        self.assertEqual(type(self.check.check_kind_card(self.hand)), type(Peke()))
-
     def test_check_three_card(self):
         self.hand.hand = ([
             Card('♠', 'A'),
@@ -287,7 +283,7 @@ class TestCheck(unittest.TestCase):
             Card('♥', '10'),
             Card('♠', 'J')
         ])
-        self.assertEqual(type(self.check.check_kind_card(self.hand)), type(ThreeCard()))
+        self.assertEqual(type(self.check.check(self.hand)), type(ThreeCard()))
 
     def test_check_four_card(self):
         self.hand.hand = ([
@@ -297,9 +293,10 @@ class TestCheck(unittest.TestCase):
             Card('♠', 'A'),
             Card('♥', '10')
         ])
-        self.assertEqual(type(self.check.check_kind_card(self.hand)), type(FourCard()))
+        self.assertEqual(type(self.check.check(self.hand)), type(FourCard()))
 
     def test_check_five_card(self):
+        self.check.initialize_joker_porker_hands()
         self.hand.hand = ([
             Card('♠', 'A'),
             Card('♦︎', 'A'),
@@ -307,7 +304,7 @@ class TestCheck(unittest.TestCase):
             Card('♠', 'A'),
             JokerCard()
         ])
-        self.assertEqual(type(self.check.check_kind_card(self.hand)), type(JokerFiveCard()))
+        self.assertEqual(type(self.check.check(self.hand)), type(JokerFiveCard()))
 
 
 class TestPorkerHand(unittest.TestCase):
