@@ -275,6 +275,11 @@ class TestCheck(unittest.TestCase):
         self.initialize_hand()
         self.assertEqual(type(self.check.check(self.hand)), type(Peke()))
 
+    def test_check_kind_card(self):
+        self.initialize_hand()
+        #self.check.check_kind_card()
+        self.assertEqual(type(self.check.check_kind_card()), type(Peke()))
+
 
 class TestPorkerHand(unittest.TestCase):
     def setUp(self):
