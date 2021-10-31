@@ -226,6 +226,11 @@ class Check():
         if self.straight.result:
             return self.straight
 
+        self.five_card.check(hand)
+        if self.five_card.result:
+            return self.five_card
+
+
         self.four_card.check(hand)
         if self.four_card.result:
             return self.four_card
@@ -255,6 +260,7 @@ class Check():
         self.straight_flash = StraightFlash()
         self.flash = Flash()
         self.straight = Straight()
+        self.five_card = FiveCard()
         self.four_card = FourCard()
         self.full_house = FullHouse()
         self.three_card = ThreeCard()
@@ -269,13 +275,10 @@ class Check():
         self.five_card = JokerFiveCard()
         self.four_card = JokerFourCard()
         self.full_house = JokerFullHouse()
-        self.three_card = JokerThreeCard()
-        self.two_pair = JokerTwoPair()
-        self.one_pair = JokerOnePair()
+        self.three_card = ThreeCard()
+        self.two_pair = TwoPair()
+        self.one_pair = OnePair()
         self.peke = Peke()
-
-    def check_kind_card(self):
-        return
 
 class PorkerHand():
     def __init__(self, porker_hand):
@@ -315,6 +318,9 @@ class StraightFlash(PorkerHand):
         check_list.sort()
         return check_list == hand_list
 
+class JokerStraightFlash(StraightFlash):
+    pass
+    
 
 class Flash(PorkerHand):
     def __init__(self, hand_name='Flash'):
@@ -373,18 +379,26 @@ class Kind(PorkerHand):
                 self.result = True
                 break
 
-class FourCard(Kind):
+class FiveCard(Kind):
     def __init__(self):
-        super().__init__('FourCard')
-        self.card_num = 4
+        super().__init__('FiveCard')
+        self.card_num = 5
 
     def check_conditions(self, hand):
-        super().check_conditions(hand)
+        self.result = False # Joker が存在しない場合は必ずFalse
 
 class JokerFiveCard(Kind):
     def __init__(self):
         super().__init__('FiveCard')
         self.card_num = 4 # Joker含めて4枚あればファイブカード
+
+    def check_conditions(self, hand):
+        super().check_conditions(hand)
+
+class FourCard(Kind):
+    def __init__(self):
+        super().__init__('FourCard')
+        self.card_num = 4
 
     def check_conditions(self, hand):
         super().check_conditions(hand)
@@ -409,6 +423,16 @@ class ThreeCard(Kind):
 class FullHouse(PorkerHand):
     def __init__(self):
         super().__init__('FullHouse')
+
+    def check_conditions(self, hand, onepair_result, three_card_result):
+        self.result = (onepair_result and three_card_result)
+
+    def check(self, hand, onepair_result, three_card_result):
+        self.check_conditions(hand, onepair_result, three_card_result)
+
+class JokerFullHouse(FullHouse):
+    def __init__(self):
+        super().__init__()
 
     def check_conditions(self, hand, onepair_result, three_card_result):
         self.result = (onepair_result and three_card_result)
