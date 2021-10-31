@@ -317,10 +317,14 @@ class StraightFlash(PorkerHand):
         check_list.sort()
         return check_list == hand_list
 
-# TODO: Add rogic
 class JokerStraightFlash(StraightFlash):
-    pass
-    
+    def is_royal(self, hand):
+        hand_list = hand.get_numbers()
+        check_list = ['10', 'J', 'Q', 'K', 'A']
+
+        numbers_diff = (set(check_list) - set(hand_list))
+        return len(numbers_diff) == 1 # 差分が1であればストレートと判定
+
 class Flash(PorkerHand):
     def __init__(self, hand_name='Flash'):
         super().__init__(hand_name)
@@ -359,7 +363,7 @@ class JokerStraight(Straight):
         numbers.remove('Joker') # joker は邪魔なのでremove()して取り除く
         numbers.sort()
         number_list = []
-        if (1 in numbers) and (13 in numbers):
+        if (1 in numbers) and ((13 in numbers) or (12 in numbers)):
             number_list = list(range(10, 10 + 4))
             number_list.insert(0, 1)
         else:
