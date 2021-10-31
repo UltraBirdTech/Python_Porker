@@ -322,8 +322,8 @@ class JokerStraightFlash(StraightFlash):
     pass
     
 class Flash(PorkerHand):
-    def __init__(self, hand_name='Flash'):
-        super().__init__(hand_name)
+    def __init__(self):
+        super().__init__('Flash')
         self.duplicate_suite_count = 1  # 重複をはじいた結果が1であればフラッシュ
 
     def check_conditions(self, hand):
@@ -332,12 +332,12 @@ class Flash(PorkerHand):
 
 class JokerFlash(Flash):
     def __init__(self):
-        super().__init__('JokerFlash')
+        super().__init__()
         self.duplicate_suite_count = 2 # Jokerを含めて重複をはじいた結果が2であればフラッシュ
 
 class Straight(PorkerHand):
-    def __init__(self, hand_name='Straight'):
-        super().__init__(hand_name)
+    def __init__(self):
+        super().__init__('Straight')
 
     def check_conditions(self, hand):
         numbers = hand.get_numbers_as_int()
@@ -351,9 +351,6 @@ class Straight(PorkerHand):
         self.result = (numbers == number_list)
 
 class JokerStraight(Straight):
-    def __init__(self):
-        super().__init__('JokerStraight')
-
     def check_conditions(self, hand):
         numbers = hand.get_numbers_as_int()
         numbers.remove('Joker') # joker は邪魔なのでremove()して取り除く
