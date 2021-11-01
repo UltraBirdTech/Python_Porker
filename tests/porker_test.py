@@ -514,7 +514,7 @@ class TestJokerFlash(unittest.TestCase):
 
     def test_initialize(self):
         self.assertEqual(self.flash.result, False)
-        self.assertEqual(self.flash.porker_hand, 'JokerFlash')
+        self.assertEqual(self.flash.porker_hand, 'Flash')
 
     def test_check_is_True(self):
         self.hand.hand = [Card('♠︎', 'A'),
@@ -581,7 +581,7 @@ class TestJokerStraight(unittest.TestCase):
 
     def test_initialize(self):
         self.assertEqual(self.straight.result, False)
-        self.assertEqual(self.straight.porker_hand, 'JokerStraight')
+        self.assertEqual(self.straight.porker_hand, 'Straight')
 
     def test_check_is_True_end_joker(self):
         self.hand.hand = [Card('♠︎', 'A'),
