@@ -275,7 +275,7 @@ class Check():
         self.four_card = JokerFourCard()
         self.full_house = JokerFullHouse()
         self.three_card = ThreeCard()
-        self.two_pair = TwoPair()
+        self.two_pair = JokerTwoPair()
         self.one_pair = OnePair()
         self.peke = Peke()
 
@@ -463,6 +463,12 @@ class TwoPair(Pair):
     def check_conditions(self, hand):
         super().check_conditions(hand)
 
+class JokerTwoPair(Pair):
+    def __init__(self):
+        super().__init__('TwoPair')
+
+    def check_conditions(self, hand):
+        self.result = False # Joker が手札にある場合は2ペアになることはないので常にFalseを設定する
 
 class OnePair(Pair):
     def __init__(self):
