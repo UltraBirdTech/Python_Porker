@@ -1,6 +1,5 @@
 import random
 
-
 def main():
     try:
         deck = Deck()
@@ -276,7 +275,7 @@ class Check():
         self.full_house = JokerFullHouse()
         self.three_card = ThreeCard()
         self.two_pair = JokerTwoPair()
-        self.one_pair = OnePair()
+        self.one_pair = JokerOnePair()
         self.peke = Peke()
 
 class PorkerHand():
@@ -478,6 +477,16 @@ class OnePair(Pair):
     def check_conditions(self, hand):
         super().check_conditions(hand)
 
+class JokerOnePair(Pair):
+    def __init__(self):
+        super().__init__('OnePair')
+        self.pair_num = 1
+
+    def check(self, hand, include_joker=True):
+        self.check_conditions(hand)
+
+    def check_conditions(self, hand, include_joker=True):
+        super().check_conditions(hand)
 
 class Peke(PorkerHand):
     def __init__(self):
