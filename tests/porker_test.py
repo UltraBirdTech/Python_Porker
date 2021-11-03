@@ -11,6 +11,7 @@ from porker import Check
 from porker import StraightFlash
 from porker import Flash
 from porker import Straight
+from porker import FiveCard
 from porker import FourCard
 from porker import FullHouse
 from porker import ThreeCard
@@ -684,6 +685,28 @@ class TestFourCard(unittest.TestCase):
                           Card('♠︎', '9')]
         self.four_card.check(self.hand)
         self.assertEqual(self.four_card.result, False)
+
+class TestFiveCard(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.five_card = FiveCard()
+
+    def test_initialize(self):
+        self.assertEqual(self.five_card.result, False)
+        self.assertEqual(self.five_card.porker_hand, 'FiveCard')
+
+    def test_check_is_False(self):
+        # Jokerがないと5カードになることはない
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          Card('♦︎', '3'),
+                          Card('♥', '3'),
+                          Card('♥', '4')]
+        self.five_card.check(self.hand)
+        self.assertFalse(self.five_card.result)
+
 
 class TestJokerFiveCard(unittest.TestCase):
     def setUp(self):
