@@ -79,7 +79,7 @@ class TestCard(unittest.TestCase):
         self.assertTrue(Card('♥', '2') < Card('♥', 'K'))
 
     def test_order_number_one_than_two(self):
-        self.assertTrue(Card('♥', '1') < Card('♥', '2'))
+        self.assertTrue(Card('♥', '1') > Card('♥', '2'))
 
     def test_order_number_one_than_two_reverse(self):
         self.assertFalse(Card('♥', '2') < Card('♥', '1'))
