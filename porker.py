@@ -40,17 +40,11 @@ class Card():
         if other.is_joker():
             return False
 
-        if self.card_number() == 2:
-            return False
-
-        if other.card_number() == 2:
-            return True
- 
         if self.card_number() == 1:
-            return other.card_number == 2
+            return False
  
         if other.card_number() == 1:
-            return self.card_number != 2
+            return True
  
         return self.card_number() < other.card_number()
 
@@ -232,6 +226,10 @@ class Check():
         if self.straight.result:
             return self.straight
 
+        self.five_card.check(hand)
+        if self.five_card.result:
+            return self.five_card
+
         self.four_card.check(hand)
         if self.four_card.result:
             return self.four_card
@@ -261,6 +259,7 @@ class Check():
         self.straight_flash = StraightFlash()
         self.flash = Flash()
         self.straight = Straight()
+        self.five_card = FiveCard()
         self.four_card = FourCard()
         self.full_house = FullHouse()
         self.three_card = ThreeCard()
@@ -272,11 +271,12 @@ class Check():
         self.straight_flash = JokerStraightFlash()
         self.flash = JokerFlash()
         self.straight = JokerStraight()
+        self.five_card = JokerFiveCard()
         self.four_card = JokerFourCard()
         self.full_house = JokerFullHouse()
-        self.three_card = JokerThreeCard()
+        self.three_card = ThreeCard()
         self.two_pair = JokerTwoPair()
-        self.one_pair = JokerOnePair()
+        self.one_pair = OnePair()
         self.peke = Peke()
 
 class PorkerHand():
@@ -317,15 +317,27 @@ class StraightFlash(PorkerHand):
         check_list.sort()
         return check_list == hand_list
 
+class JokerStraightFlash(StraightFlash):
+    def is_royal(self, hand):
+        hand_list = hand.get_numbers()
+        check_list = ['10', 'J', 'Q', 'K', 'A']
+
+        numbers_diff = (set(check_list) - set(hand_list))
+        return len(numbers_diff) == 1 # 差分が1であればストレートと判定
 
 class Flash(PorkerHand):
     def __init__(self):
         super().__init__('Flash')
+        self.duplicate_suite_count = 1  # 重複をはじいた結果が1であればフラッシュ
 
     def check_conditions(self, hand):
         suits = hand.get_all_suits()
-        self.result = (len(set(suits)) == 1)  # 重複をはじいた結果が1であればフラッシュ
+        self.result = (len(set(suits)) == self.duplicate_suite_count)
 
+class JokerFlash(Flash):
+    def __init__(self):
+        super().__init__()
+        self.duplicate_suite_count = 2 # Jokerを含めて重複をはじいた結果が2であればフラッシュ
 
 class Straight(PorkerHand):
     def __init__(self):
@@ -342,6 +354,19 @@ class Straight(PorkerHand):
             number_list = list(range(numbers[0], numbers[0] + 5))
         self.result = (numbers == number_list)
 
+class JokerStraight(Straight):
+    def check_conditions(self, hand):
+        numbers = hand.get_numbers_as_int()
+        numbers.remove('Joker') # joker は邪魔なのでremove()して取り除く
+        numbers.sort()
+        number_list = []
+        if (1 in numbers) and ((13 in numbers) or (12 in numbers)):
+            number_list = list(range(10, 10 + 4))
+            number_list.insert(0, 1)
+        else:
+            number_list = list(range(numbers[0], numbers[0] + 5))
+        numbers_diff = (set(number_list) - set(numbers))
+        self.result = len(numbers_diff) == 1 # 差分が1であればストレートと判定
 
 class Kind(PorkerHand):
     def __init__(self, porker_hand):
@@ -354,6 +379,21 @@ class Kind(PorkerHand):
                 self.result = True
                 break
 
+class FiveCard(Kind):
+    def __init__(self):
+        super().__init__('FiveCard')
+        self.card_num = 5
+
+    def check_conditions(self, hand):
+        self.result = False # Joker が存在しない場合は必ずFalse
+
+class JokerFiveCard(Kind):
+    def __init__(self):
+        super().__init__('FiveCard')
+        self.card_num = 4 # Joker含めて4枚あればファイブカード
+
+    def check_conditions(self, hand):
+        super().check_conditions(hand)
 
 class FourCard(Kind):
     def __init__(self):
@@ -363,6 +403,13 @@ class FourCard(Kind):
     def check_conditions(self, hand):
         super().check_conditions(hand)
 
+class JokerFourCard(Kind):
+    def __init__(self):
+        super().__init__('FourCard')
+        self.card_num = 3 # Joker含めて3枚あれば4カード
+
+    def check_conditions(self, hand):
+        super().check_conditions(hand)
 
 class ThreeCard(Kind):
     def __init__(self):
@@ -376,6 +423,16 @@ class ThreeCard(Kind):
 class FullHouse(PorkerHand):
     def __init__(self):
         super().__init__('FullHouse')
+
+    def check_conditions(self, hand, onepair_result, three_card_result):
+        self.result = (onepair_result and three_card_result)
+
+    def check(self, hand, onepair_result, three_card_result):
+        self.check_conditions(hand, onepair_result, three_card_result)
+
+class JokerFullHouse(FullHouse):
+    def __init__(self):
+        super().__init__()
 
     def check_conditions(self, hand, onepair_result, three_card_result):
         self.result = (onepair_result and three_card_result)
@@ -406,6 +463,12 @@ class TwoPair(Pair):
     def check_conditions(self, hand):
         super().check_conditions(hand)
 
+class JokerTwoPair(Pair):
+    def __init__(self):
+        super().__init__('TwoPair')
+
+    def check_conditions(self, hand):
+        self.result = False # Joker が手札にある場合は2ペアになることはないので常にFalseを設定する
 
 class OnePair(Pair):
     def __init__(self):
