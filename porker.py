@@ -483,9 +483,12 @@ class JokerOnePair(Pair):
         self.pair_num = 1
 
     def check(self, hand, include_joker=True):
-        self.check_conditions(hand)
+        if include_joker:
+            self.check_conditions(hand)
+        else:
+            self.check_conditions(hand)
 
-    def check_conditions(self, hand, include_joker=True):
+    def check_conditions(self, hand):
         super().check_conditions(hand)
 
 class Peke(PorkerHand):

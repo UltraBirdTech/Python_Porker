@@ -995,7 +995,7 @@ class TestJokerOnePair(unittest.TestCase):
 
     def test_check_is_False(self):
         self.hand.hand = [Card('♠︎', 'A'),
-                          Card('♦', '3'),
+                          Card('♦', 'A'),
                           Card('♠︎', '5'),
                           Card('♦', '7'),
                           Card('♠︎', '9')]
