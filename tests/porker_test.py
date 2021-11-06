@@ -831,8 +831,7 @@ class TestThreeCard(unittest.TestCase):
                           Card('♥', '3'),
                           Card('♠︎', '9')]
         self.three_card.check(self.hand)
-        self.assertEqual(self.three_card.result, True)
-
+        self.assertFalse(self.three_card.result)
 
 class TestJokerThreeCard(unittest.TestCase):
     def setUp(self):
@@ -870,7 +869,7 @@ class TestJokerThreeCard(unittest.TestCase):
                           JokerCard(),
                           Card('♠︎', '9')]
         self.three_card.check(self.hand)
-        self.assertTrue(self.three_card.result)
+        self.assertFalse(self.three_card.result)
 
 class TestFulleHouse(unittest.TestCase):
     def setUp(self):
