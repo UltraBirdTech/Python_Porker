@@ -484,7 +484,9 @@ class JokerOnePair(Pair):
 
     def check(self, hand, include_joker=True):
         if include_joker:
-            self.check_conditions(hand)
+            # Joker を含めて3 カードがある場合は false
+            #self.check_conditions(hand)
+            self.result = True
         else:
             self.check_conditions(hand)
 
