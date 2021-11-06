@@ -296,7 +296,7 @@ class TestCheck(unittest.TestCase):
         self.assertEqual(type(self.check.four_card), type(JokerFourCard()))
         self.assertEqual(type(self.check.full_house), type(JokerFullHouse()))
         self.assertEqual(type(self.check.three_card), type(ThreeCard()))
-        self.assertEqual(type(self.check.two_pair), type(TwoPair()))
+        self.assertEqual(type(self.check.two_pair), type(JokerTwoPair()))
         self.assertEqual(type(self.check.one_pair), type(OnePair()))
         self.assertEqual(type(self.check.peke), type(Peke()))
 
