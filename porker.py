@@ -273,7 +273,7 @@ class Check():
         self.five_card = JokerFiveCard()
         self.four_card = JokerFourCard()
         self.full_house = JokerFullHouse()
-        self.three_card = ThreeCard()
+        self.three_card = JokerThreeCard()
         self.two_pair = JokerTwoPair()
         self.one_pair = JokerOnePair()
         self.peke = Peke()
@@ -414,6 +414,14 @@ class ThreeCard(Kind):
     def __init__(self):
         super().__init__('ThreeCard')
         self.card_num = 3
+
+    def check_conditions(self, hand):
+        super().check_conditions(hand)
+
+class JokerThreeCard(Kind):
+    def __init__(self):
+        super().__init__('ThreeCard')
+        self.card_num = 2 # Joker含めて2枚あれば3カード
 
     def check_conditions(self, hand):
         super().check_conditions(hand)
