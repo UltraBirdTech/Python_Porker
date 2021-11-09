@@ -496,21 +496,8 @@ class JokerOnePair(Pair):
         super().__init__('OnePair')
         self.pair_num = 1
 
-    def check(self, hand, include_joker=True):
-#        if include_joker:
-#            three_card = JokerThreeCard()
-#            three_card(check, hand)
-#            if three_card.result:
-                
-            # Joker を含めて3 カードがある場合は false
-            #self.check_conditions(hand)
-#            self.result = True
-#        else:
-#            self.check_conditions(hand)
-        self.check_conditions(hand)
-
     def check_conditions(self, hand):
-        super().check_conditions(hand)
+        self.result = True # Joker を持っている場合は最低でもOnePairになるためTrueになる。
 
 class Peke(PorkerHand):
     def __init__(self):
