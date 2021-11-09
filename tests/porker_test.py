@@ -259,7 +259,7 @@ class TestHand(unittest.TestCase):
 
     def test_get_higher_number(self):
         self.initialize_hand()
-        self.assertEqual(self.hand.get_higher_number().card_number(), 2)
+        self.assertEqual(self.hand.get_higher_number().card_number(), 1)
  
     def test_get_higher_number_king(self):
         self.hand.hand += ([
