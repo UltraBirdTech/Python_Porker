@@ -210,8 +210,7 @@ class Hand():
 class Check():
     def __init__(self, is_joker=False):
         if is_joker:
-            #self.initialize_joker_porker_hands()
-            self.initialize_porker_hands()
+            self.initialize_joker_porker_hands()
             return
         self.initialize_porker_hands()
 
