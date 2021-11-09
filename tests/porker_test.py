@@ -937,6 +937,43 @@ class TestFulleHouse(unittest.TestCase):
                               self.three_card.result)
         self.assertEqual(self.full_house.result, False)
 
+class TestJokerFulleHouse(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.full_house = JokerFullHouse()
+
+    def test_initialize(self):
+        self.assertEqual(self.full_house.result, False)
+        self.assertEqual(self.full_house.porker_hand, 'FullHouse')
+
+    def test_check_is_True(self):
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          JokerCard(),
+                          Card('♥', '5'),
+                          Card('♠︎', '5')]
+        self.full_house.check(self.hand)
+        self.assertEqual(self.full_house.result, True)
+
+    def test_check_is_True(self):
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          Card('♥', '3'),
+                          JokerCard(),
+                          Card('♠︎', '5')]
+        self.full_house.check(self.hand)
+        self.assertEqual(self.full_house.result, False)
+
+    def test_check_is_False(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          JokerCard(),
+                          Card('♦', '7'),
+                          Card('♠︎', '9')]
+        self.full_house.check(self.hand)
+        self.assertEqual(self.full_house.result, False)
 
 class TestTwoPair(unittest.TestCase):
     def setUp(self):
