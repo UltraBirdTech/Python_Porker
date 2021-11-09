@@ -1061,8 +1061,8 @@ class TestJokerOnePair(unittest.TestCase):
                           JokerCard(),
                           Card('♥', '4'),
                           Card('♠︎', '9')]
-        self.one_pair.check(self.hand, False)
-        self.assertEqual(self.one_pair.result, False)
+        self.one_pair.check(self.hand)
+        self.assertEqual(self.one_pair.result, True)
 
     def test_check_is_False(self):
         self.hand.hand = [Card('♠︎', 'A'),
@@ -1070,7 +1070,7 @@ class TestJokerOnePair(unittest.TestCase):
                           Card('♠︎', '5'),
                           Card('♦', '7'),
                           Card('♠︎', '9')]
-        self.one_pair.check(self.hand, False)
+        self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, True)
 
     def test_check_is_False_when_three_card(self):
@@ -1079,7 +1079,7 @@ class TestJokerOnePair(unittest.TestCase):
                           JokerCard(),
                           Card('♦', '5'),
                           Card('♠︎', '9')]
-        self.one_pair.check(self.hand, False)
+        self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, True)
 
 class TestPeke(unittest.TestCase):
