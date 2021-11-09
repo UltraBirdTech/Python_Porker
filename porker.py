@@ -200,6 +200,12 @@ class Hand():
                 return True
         return False
 
+    def get_higher_number(self):
+        highest_card = self.hand[0]
+        for c in self.hand[1:-1]:
+            if highest_card < c:
+                highest_card = c
+        return highest_card
 
 class Check():
     def __init__(self, is_joker=False):
