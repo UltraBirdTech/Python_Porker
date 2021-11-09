@@ -27,6 +27,7 @@ from porker import JokerFourCard
 from porker import JokerThreeCard
 from porker import JokerFullHouse
 from porker import JokerTwoPair
+from porker import JokerOnePair
 
 
 class TestCard(unittest.TestCase):
@@ -258,7 +259,7 @@ class TestHand(unittest.TestCase):
 
     def test_get_higher_number(self):
         self.initialize_hand()
-        self.assertEqual(self.hand.get_higher_number().card_number(), 2)
+        self.assertEqual(self.hand.get_higher_number().card_number(), 1)
  
     def test_get_higher_number_king(self):
         self.hand.hand += ([
@@ -323,7 +324,7 @@ class TestCheck(unittest.TestCase):
         self.assertEqual(type(self.check.full_house), type(JokerFullHouse()))
         self.assertEqual(type(self.check.three_card), type(JokerThreeCard()))
         self.assertEqual(type(self.check.two_pair), type(JokerTwoPair()))
-        self.assertEqual(type(self.check.one_pair), type(OnePair()))
+        self.assertEqual(type(self.check.one_pair), type(JokerOnePair()))
         self.assertEqual(type(self.check.peke), type(Peke()))
 
     def test_check(self):
@@ -1043,6 +1044,70 @@ class TestOnePair(unittest.TestCase):
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, False)
 
+class TestJokerOnePair(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+        self.one_pair = JokerOnePair()
+
+    def test_initialize(self):
+        self.assertEqual(self.one_pair.result, False)
+        self.assertEqual(self.one_pair.porker_hand, 'OnePair')
+
+#    def test_check_is_True_include_joker(self):
+#        self.hand.hand = [Card('♠︎', '2'),
+#                          Card('♣︎', '3'),
+#                          JokerCard(),
+#                          Card('♥', '4'),
+#                          Card('♠︎', '9')]
+#        self.one_pair.check(self.hand, True)
+#        self.assertEqual(self.one_pair.result, True)
+
+    def test_check_is_False_include_joker(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          Card('♠︎', '9')]
+        self.one_pair.check(self.hand, True)
+        self.assertEqual(self.one_pair.result, False)
+
+#    def test_check_is_False_when_three_card_include_joker(self):
+#        self.hand.hand = [Card('♠︎', 'A'),
+#                          Card('♦', 'A'),
+#                          JokerCard(),
+#                          Card('♦', '5'),
+#                          Card('♠︎', '9')]
+#        self.one_pair.check(self.hand, True)
+#        self.assertEqual(self.one_pair.result, False)
+
+    def test_check_is_True(self):
+        self.hand.hand = [Card('♠︎', '2'),
+                          Card('♣︎', '3'),
+                          JokerCard(),
+                          Card('♥', '4'),
+                          Card('♠︎', '9')]
+        self.one_pair.check(self.hand, False)
+        self.assertEqual(self.one_pair.result, False)
+
+    def test_check_is_False(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', 'A'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          Card('♠︎', '9')]
+        self.one_pair.check(self.hand, False)
+        self.assertEqual(self.one_pair.result, True)
+
+    def test_check_is_False_when_three_card(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', 'A'),
+                          JokerCard(),
+                          Card('♦', '5'),
+                          Card('♠︎', '9')]
+        self.one_pair.check(self.hand, False)
+        self.assertEqual(self.one_pair.result, True)
 
 class TestPeke(unittest.TestCase):
     def setUp(self):
