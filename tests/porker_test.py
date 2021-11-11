@@ -132,8 +132,13 @@ class TestDeck(unittest.TestCase):
         self.assertEqual(len(self.deck.deck_list), 4 * 13 + 1)
 
     def test_draw(self):
-        self.assertEqual(type(self.deck.draw()), type(Card('♠︎', 'A')))
+        card = self.deck.draw()
+        # check card type.
+        self.assertEqual(type(card), type(Card('♠︎', 'A')))
+        # check deck number.
         self.assertEqual(len(self.deck.deck_list), ((4 * 13 + 1) - 1))
+        # check not in deck list
+        self.assertTrue(card not in self.deck.deck_list)
 
 
 class TestPlayer(unittest.TestCase):
