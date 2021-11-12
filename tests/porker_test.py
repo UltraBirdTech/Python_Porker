@@ -336,6 +336,27 @@ class TestCheck(unittest.TestCase):
         self.initialize_hand()
         self.assertEqual(type(self.check.check(self.hand)), type(Peke()))
 
+    def test_check_royal_straight_flash(self):
+        self.hand.hand = ([
+            Card('♠', '10'),
+            Card('♠', 'J'),
+            Card('♠', 'Q'),
+            Card('♠', 'K'),
+            Card('♠', 'A'),
+        ])
+        self.assertEqual(type(self.check.check(self.hand)), type(StraightFlash()))
+
+    def test_check_straight_flash(self):
+        self.hand.hand = ([
+            Card('♠', '10'),
+            Card('♠', '9'),
+            Card('♠', '8'),
+            Card('♠', '7'),
+            Card('♠', '6'),
+        ])
+        self.assertEqual(type(self.check.check(self.hand)), type(StraightFlash()))
+
+
     def test_check_three_card(self):
         self.hand.hand = ([
             Card('♠', 'A'),
