@@ -78,6 +78,9 @@ class Deck():
         suits = ['♠', '♣', '♥', '♦']
         numbers = ['A', '2', '3', '4', '5', '6', '7',
                    '8', '9', '10', 'J', 'Q', 'K']
+        self.built_deck(suits, numbers)
+
+    def built_deck(self, suits, numbers):
         self.deck_list = []
         for s in suits:
             for n in numbers:
@@ -93,12 +96,7 @@ class SevenTeenDeck(Deck):
     def __init__(self):
         suits = ['♠', '♣', '♥', '♦']
         numbers = ['A', 'J', 'Q', 'K']
-        self.deck_list = []
-        for s in suits:
-            for n in numbers:
-                self.deck_list.append(Card(s, n))
-        self.deck_list.append(JokerCard())
-
+        self.built_deck(suits, numbers)
 
 class Player():
     def __init__(self, deck):
