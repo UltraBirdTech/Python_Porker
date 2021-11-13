@@ -89,6 +89,17 @@ class Deck():
         self.deck_list.remove(card)
         return card
 
+class SevenTeenDeck(Deck):
+    def __init__(self):
+        suits = ['♠', '♣', '♥', '♦']
+        numbers = ['A', 'J', 'Q', 'K']
+        self.deck_list = []
+        for s in suits:
+            for n in numbers:
+                self.deck_list.append(Card(s, n))
+        self.deck_list.append(JokerCard())
+
+
 class Player():
     def __init__(self, deck):
         self.hand = Hand()
