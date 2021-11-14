@@ -29,6 +29,7 @@ from porker import JokerThreeCard
 from porker import JokerFullHouse
 from porker import JokerTwoPair
 from porker import JokerOnePair
+from porker import NotIncludeJokerError
 
 
 class TestCard(unittest.TestCase):
@@ -1144,14 +1145,14 @@ class TestJokerOnePair(unittest.TestCase):
         self.one_pair.check(self.hand)
         self.assertEqual(self.one_pair.result, True)
 
-    def test_check_is_False(self):
+    def test_check_Joker_Exception(self):
         self.hand.hand = [Card('♠︎', 'A'),
                           Card('♦', 'A'),
                           Card('♠︎', '5'),
                           Card('♦', '7'),
                           Card('♠︎', '9')]
-        self.one_pair.check(self.hand)
-        self.assertEqual(self.one_pair.result, True)
+        with self.assertRaises(NotIncludeJokerError):
+            self.one_pair.check(self.hand)
 
     def test_check_is_False_when_three_card(self):
         self.hand.hand = [Card('♠︎', 'A'),
