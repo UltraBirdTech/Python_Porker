@@ -1,8 +1,9 @@
 import random
+import sys
 
 def main():
     try:
-        deck = Deck()
+        deck = switch_deck()
         player = Player(deck)
         player.exchange(deck)
         player.print_my_hand()
@@ -13,6 +14,11 @@ def main():
     except Exception as err:
         print(err)
 
+def switch_deck():
+    if len(sys.argv)==2:
+        if sys.argv[1] == '17':
+            return SevenTeenDeck()
+    return Deck()
 
 class Card():
     def __init__(self, suit, num):
