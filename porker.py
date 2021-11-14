@@ -15,7 +15,6 @@ def main():
         print(err)
 
 def switch_deck():
-    print(sys.argv)
     if len(sys.argv)==2:
         if sys.argv[1] == '17':
             return SevenTeenDeck()
