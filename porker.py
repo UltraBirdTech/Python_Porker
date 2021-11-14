@@ -78,6 +78,9 @@ class Deck():
         suits = ['♠', '♣', '♥', '♦']
         numbers = ['A', '2', '3', '4', '5', '6', '7',
                    '8', '9', '10', 'J', 'Q', 'K']
+        self.built(suits, numbers)
+
+    def built(self, suits, numbers):
         self.deck_list = []
         for s in suits:
             for n in numbers:
@@ -88,6 +91,12 @@ class Deck():
         card = random.choice(self.deck_list)
         self.deck_list.remove(card)
         return card
+
+class SevenTeenDeck(Deck):
+    def __init__(self):
+        suits = ['♠', '♣', '♥', '♦']
+        numbers = ['A', 'J', 'Q', 'K']
+        self.built(suits, numbers)
 
 class Player():
     def __init__(self, deck):

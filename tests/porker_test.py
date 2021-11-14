@@ -4,6 +4,7 @@ import unittest
 from porker import Card
 from porker import JokerCard
 from porker import Deck
+from porker import SevenTeenDeck
 from porker import Player
 from porker import Hand
 from porker import PorkerHand
@@ -140,6 +141,22 @@ class TestDeck(unittest.TestCase):
         # check not in deck list
         self.assertTrue(card not in self.deck.deck_list)
 
+class TestSevenTeenDeck(unittest.TestCase):
+    def setUp(self):
+        self.deck = SevenTeenDeck()
+
+    def test_check_deck_num(self):
+        # ['♠︎', '♣︎', '♦︎', '♥''] * [A, J, Q, K] + [Joker]
+        self.assertEqual(len(self.deck.deck_list), 4 * 4 + 1)
+
+    def test_draw(self):
+        card = self.deck.draw()
+        # check card type.
+        self.assertEqual(type(card), type(Card('♠︎', 'A')))
+        # check deck number.
+        self.assertEqual(len(self.deck.deck_list), ((4 * 4 + 1) - 1))
+        # check not in deck list
+        self.assertTrue(card not in self.deck.deck_list)
 
 class TestPlayer(unittest.TestCase):
     def setUp(self):
