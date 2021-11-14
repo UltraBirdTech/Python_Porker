@@ -156,6 +156,9 @@ class InputValueError(Exception):
     def __init__(self, message):
         self.message = message
 
+class NotIncludeJokerError(Exception):
+    def __init__(self):
+        self.message = 'Jokerが手札に含まれていないのにJoker系統のClassが呼び出されました。'
 
 class Hand():
     def __init__(self):
