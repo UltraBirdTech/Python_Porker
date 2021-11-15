@@ -162,6 +162,9 @@ class InputValueError(Exception):
     def __init__(self, message):
         self.message = message
 
+class NotIncludeJokerError(Exception):
+    def __init__(self):
+        self.message = 'Jokerが手札に含まれていないのにJoker系統のClassが呼び出されました。'
 
 class Hand():
     def __init__(self):
@@ -507,7 +510,12 @@ class JokerOnePair(Pair):
         self.pair_num = 1
 
     def check_conditions(self, hand):
-        self.result = True # Joker を持っている場合は最低でもOnePairになるためTrueになる。
+        if hand.is_joker():
+            self.result = True # Joker を持っている場合は最低でもOnePairになるためTrueになる。
+            return
+
+        # Joker が存在しない場合はError.
+        raise NotIncludeJokerError()
 
 class Peke(PorkerHand):
     def __init__(self):
