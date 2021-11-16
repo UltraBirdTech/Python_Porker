@@ -441,8 +441,12 @@ class JokerThreeCard(Kind):
         self.card_num = 2 # Joker含めて2枚あれば3カード
 
     def check_conditions(self, hand):
-        super().check_conditions(hand)
+        if hand.is_joker():
+            super().check_conditions(hand)
+            return
 
+        # Joker が存在しない場合はError.
+        raise NotIncludeJokerError()
 
 class FullHouse(PorkerHand):
     def __init__(self):
