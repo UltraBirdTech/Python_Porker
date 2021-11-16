@@ -1068,14 +1068,14 @@ class TestJokerTwoPair(unittest.TestCase):
         self.assertEqual(self.two_pair.result, False)
         self.assertEqual(self.two_pair.porker_hand, 'TwoPair')
 
-    def test_check_is_False(self):
-        self.hand.hand = [Card('♠︎', '3'),
-                          Card('♣︎', '3'),
-                          Card('♦︎', '5'),
-                          Card('♥', '5'),
+    def test_check_Joker_Exception(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', 'A'),
+                          Card('♠︎', '5'),
+                          Card('♦', '5'),
                           Card('♠︎', '9')]
-        self.two_pair.check(self.hand)
-        self.assertFalse(self.two_pair.result)
+        with self.assertRaises(NotIncludeJokerError):
+            self.two_pair.check(self.hand)
 
     def test_check_is_False_with_joker(self):
         self.hand.hand = [Card('♠︎', 'A'),
