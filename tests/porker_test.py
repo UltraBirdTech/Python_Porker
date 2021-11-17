@@ -941,6 +941,15 @@ class TestJokerThreeCard(unittest.TestCase):
         self.three_card.check(self.hand)
         self.assertFalse(self.three_card.result)
 
+    def test_check_raise_not_include_joker(self):
+        self.hand.hand = [Card('♠︎', '3'),
+                          Card('♣︎', '3'),
+                          Card('♦︎', '3'),
+                          Card('♦︎', '6'),
+                          Card('♠︎', '9')]
+        with self.assertRaises(NotIncludeJokerError):
+            self.three_card.check(self.hand)
+
 class TestFulleHouse(unittest.TestCase):
     def setUp(self):
         deck = Deck()
