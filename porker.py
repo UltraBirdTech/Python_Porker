@@ -469,7 +469,11 @@ class JokerFullHouse(FullHouse):
 
     # Joker の時はワンペア、スリーカードの判定はいらないが、親関数とのかねあいで引数を追加する。引数は使わない。
     def check(self, hand, onepir_result=True, three_card_result=True):
-        self.check_conditions(hand)
+        if hand.is_joker():
+            self.check_conditions(hand)
+            return
+         # Joker が存在しない場合はError.
+        raise NotIncludeJokerError()
 
 class Pair(PorkerHand):
     def __init__(self, porker_hand):

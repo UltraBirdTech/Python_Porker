@@ -1028,6 +1028,15 @@ class TestJokerFulleHouse(unittest.TestCase):
         self.full_house.check(self.hand, True, True)
         self.assertEqual(self.full_house.result, False)
 
+    def test_raise_joker_include_error(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', 'A'),
+                          Card('♦', '3'),
+                          Card('♦', '3'),
+                          Card('♠︎', '3')]
+        with self.assertRaises(NotIncludeJokerError):
+            self.full_house.check(self.hand)
+
 class TestTwoPair(unittest.TestCase):
     def setUp(self):
         deck = Deck()
