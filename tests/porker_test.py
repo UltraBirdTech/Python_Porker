@@ -135,8 +135,6 @@ class TestDeck(unittest.TestCase):
 
     def test_draw(self):
         card = self.deck.draw()
-        # check card type.
-        self.assertEqual(type(card), type(Card('♠︎', 'A')))
         # check deck number.
         self.assertEqual(len(self.deck.deck_list), ((4 * 13 + 1) - 1))
         # check not in deck list
@@ -152,8 +150,6 @@ class TestSevenTeenDeck(unittest.TestCase):
 
     def test_draw(self):
         card = self.deck.draw()
-        # check card type.
-        self.assertEqual(type(card), type(Card('♠︎', 'A')))
         # check deck number.
         self.assertEqual(len(self.deck.deck_list), ((4 * 4 + 1) - 1))
         # check not in deck list
