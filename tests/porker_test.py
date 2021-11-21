@@ -830,6 +830,15 @@ class TestJokerFiveCard(unittest.TestCase):
                           JokerCard()]
         self.five_card.check(self.hand)
         self.assertEqual(self.five_card.result, False)
+ 
+    def test_check_include_joker(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '7'),
+                          Card('♦', '7'),
+                          Card('♦', '7')]
+        with self.assertRaises(NotIncludeJokerError):
+            self.five_card.check(self.hand)
 
 class TestJokerFourCard(unittest.TestCase):
     def setUp(self):

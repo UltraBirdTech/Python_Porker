@@ -409,7 +409,12 @@ class JokerFiveCard(Kind):
         self.card_num = 4 # Joker含めて4枚あればファイブカード
 
     def check_conditions(self, hand):
-        super().check_conditions(hand)
+        if hand.is_joker():
+            super().check_conditions(hand)
+            return
+
+        # Joker が存在しない場合はError.
+        raise NotIncludeJokerError()
 
 class FourCard(Kind):
     def __init__(self):
