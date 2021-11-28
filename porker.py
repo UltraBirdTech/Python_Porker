@@ -355,6 +355,14 @@ class JokerFlash(Flash):
         super().__init__()
         self.duplicate_suite_count = 2 # Jokerを含めて重複をはじいた結果が2であればフラッシュ
 
+    def check_conditions(self, hand):
+        if hand.is_joker():
+            super().check_conditions(hand)
+            return
+
+        # Joker が存在しない場合はError.
+        raise NotIncludeJokerError()
+
 class Straight(PorkerHand):
     def __init__(self):
         super().__init__('Straight')
