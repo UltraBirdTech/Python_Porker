@@ -629,6 +629,15 @@ class TestJokerFlash(unittest.TestCase):
         self.flash.check(self.hand)
         self.assertEqual(self.flash.result, False)
 
+    def test_check_include_joker(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♦', '3'),
+                          Card('♠︎', '5'),
+                          Card('♦', '7'),
+                          Card('♦', '8')]
+        with self.assertRaises(NotIncludeJokerError):
+            self.flash.check(self.hand)
+
 class TestStraight(unittest.TestCase):
     def setUp(self):
         deck = Deck()
