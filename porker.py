@@ -380,6 +380,9 @@ class Straight(PorkerHand):
 
 class JokerStraight(Straight):
     def check_conditions(self, hand):
+        if not hand.is_joker():
+            # Joker が存在しない場合はError.
+            raise NotIncludeJokerError()
         numbers = hand.get_numbers_as_int()
         numbers.remove('Joker') # joker は邪魔なのでremove()して取り除く
         numbers.sort()
