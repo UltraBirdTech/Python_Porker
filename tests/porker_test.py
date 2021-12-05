@@ -759,6 +759,14 @@ class TestJokerStraight(unittest.TestCase):
         self.straight.check(self.hand)
         self.assertEqual(self.straight.result, True)
 
+    def test_check_joker(self):
+        self.hand.hand = [Card('♠︎', '10'),
+                          Card('♦', 'J'),
+                          Card('♦', 'Q'),
+                          Card('♦', 'K'),
+                          Card('♠︎', 'A')]
+        with self.assertRaises(NotIncludeJokerError):
+            self.straight.check(self.hand)
  
 class TestFourCard(unittest.TestCase):
     def setUp(self):
