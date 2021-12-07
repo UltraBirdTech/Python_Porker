@@ -570,6 +570,14 @@ class TestJokerStraightFlash(unittest.TestCase):
                           JokerCard()]
         self.assertEqual(self.straight_flash.is_royal(self.hand), False)
 
+    def test_check_joker(self):
+        self.hand.hand = [Card('♠︎', '9'),
+                          Card('♠︎', '10'),
+                          Card('♠︎', 'J'),
+                          Card('♠︎', 'Q'),
+                          Card('♠︎', 'K')]
+        with self.assertRaises(NotIncludeJokerError):
+            self.straight_flash.check(self.hand, True, True) # straight, Flash の結果は各クラスのcheck()時にエラーとなるため適当にTrue, Falseをあたえる。
 
 class TestFlash(unittest.TestCase):
     def setUp(self):
