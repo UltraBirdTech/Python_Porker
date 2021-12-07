@@ -19,7 +19,6 @@ from porker import ThreeCard
 from porker import TwoPair
 from porker import OnePair
 from porker import Peke
-from porker import JokerStraightFlash
 from porker import JokerFlash
 from porker import JokerStraight
 from porker import JokerStraightFlash
