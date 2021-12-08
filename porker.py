@@ -334,6 +334,14 @@ class StraightFlash(PorkerHand):
         return check_list == hand_list
 
 class JokerStraightFlash(StraightFlash):
+    def check(self, hand, straight_result, flash_result):
+        if hand.is_joker():
+            super().check(hand, straight_result, flash_result)
+            return
+
+        # Joker が存在しない場合はError.
+        raise NotIncludeJokerError()
+
     def is_royal(self, hand):
         hand_list = hand.get_numbers()
         check_list = ['10', 'J', 'Q', 'K', 'A']
