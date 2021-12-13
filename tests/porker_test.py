@@ -30,7 +30,6 @@ from porker import JokerTwoPair
 from porker import JokerOnePair
 from porker import NotIncludeJokerError
 
-
 class TestCard(unittest.TestCase):
     def setUp(self):
         self.card1 = Card('♠︎', 'A')
@@ -122,7 +121,6 @@ class TestJokerCard(unittest.TestCase):
 
     def test_is_joker(self):
         self.assertTrue(self.card.is_joker())
-
 
 class TestDeck(unittest.TestCase):
     def setUp(self):
