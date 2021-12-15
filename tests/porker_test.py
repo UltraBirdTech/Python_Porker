@@ -297,7 +297,6 @@ class TestHand(unittest.TestCase):
         ])
         self.assertEqual(self.hand.get_higher_number().card_number(), 9)
 
-
 class TestCheck(unittest.TestCase):
     def setUp(self):
         self.check = Check()
@@ -367,7 +366,6 @@ class TestCheck(unittest.TestCase):
         ])
         self.assertEqual(type(self.check.check(self.hand)), type(StraightFlash()))
 
-
     def test_check_three_card(self):
         self.hand.hand = ([
             Card('♠', 'A'),
@@ -398,7 +396,6 @@ class TestCheck(unittest.TestCase):
             JokerCard()
         ])
         self.assertEqual(type(self.check.check(self.hand)), type(JokerFiveCard()))
-
 
 class TestPorkerHand(unittest.TestCase):
     def setUp(self):
