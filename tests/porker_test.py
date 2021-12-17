@@ -1136,7 +1136,6 @@ class TestJokerTwoPair(unittest.TestCase):
         self.two_pair.check(self.hand)
         self.assertFalse(self.two_pair.result)
 
-
 class TestOnePair(unittest.TestCase):
     def setUp(self):
         deck = Deck()
