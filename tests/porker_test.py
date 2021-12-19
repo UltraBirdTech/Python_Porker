@@ -431,19 +431,21 @@ class TestJoker(unittest.TestCase):
 
         self.joker = Joker()
 
-    def test_check_true(self):
-        self.hand.hand = [Card('♠︎', 'A'),
-                          Card('♠︎', '2'),
-                          Card('♠︎', '3'),
-                          Card('♠︎', '4'),
-                          Card('♠︎', '5')]
-
     def test_check_false(self):
         self.hand.hand = [Card('♠︎', 'A'),
                           Card('♠︎', '2'),
                           Card('♠︎', '3'),
                           Card('♠︎', '4'),
+                          Card('♠︎', '5')]
+        self.assertFalse(self.joker.check(self.hand))
+
+    def test_check_true(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♠︎', '2'),
+                          Card('♠︎', '3'),
+                          Card('♠︎', '4'),
                           JokerCard()]
+        self.assertTrue(self.joker.check(self.hand))
 
 class TestStraightFlash(unittest.TestCase):
     def setUp(self):
