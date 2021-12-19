@@ -202,7 +202,6 @@ class TestPlayer(unittest.TestCase):
     def test_check_porker_hand(self):
         pass
 
-
 class TestHand(unittest.TestCase):
     def setUp(self):
         self.hand = Hand()
