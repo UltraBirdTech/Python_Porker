@@ -437,7 +437,7 @@ class TestJoker(unittest.TestCase):
                           Card('♠︎', '3'),
                           Card('♠︎', '4'),
                           Card('♠︎', '5')]
-        self.assertFalse(self.joker.check(self.hand))
+        self.assertFalse(self.joker.check_joker(self.hand))
 
     def test_check_true(self):
         self.hand.hand = [Card('♠︎', 'A'),
@@ -445,7 +445,7 @@ class TestJoker(unittest.TestCase):
                           Card('♠︎', '3'),
                           Card('♠︎', '4'),
                           JokerCard()]
-        self.assertTrue(self.joker.check(self.hand))
+        self.assertTrue(self.joker.check_joker(self.hand))
 
 class TestStraightFlash(unittest.TestCase):
     def setUp(self):
