@@ -222,7 +222,7 @@ class Joker():
     def __init__(self):
         pass
 
-    def check(self, hand):
+    def check_joker(self, hand):
         return hand.is_joker()
 
 class Check():
