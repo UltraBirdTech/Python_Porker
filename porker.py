@@ -218,6 +218,13 @@ class Hand():
                 highest_card = c
         return highest_card
 
+class Joker():
+    def __init__(self):
+        pass
+
+    def check(self, hand):
+        return hand.is_joker()
+
 class Check():
     def __init__(self, is_joker=False):
         if is_joker:

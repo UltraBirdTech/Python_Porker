@@ -9,6 +9,7 @@ from porker import Player
 from porker import Hand
 from porker import PorkerHand
 from porker import Check
+from porker import Joker
 from porker import StraightFlash
 from porker import Flash
 from porker import Straight
@@ -417,6 +418,29 @@ class TestPorkerHand(unittest.TestCase):
     def display(self):
         pass
 
+class TestJoker(unittest.TestCase):
+    def setUp(self):
+        deck = Deck()
+        player = Player(deck)
+        self.hand = player.hand
+
+        self.joker = Joker()
+
+    def test_check_false(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♠︎', '2'),
+                          Card('♠︎', '3'),
+                          Card('♠︎', '4'),
+                          Card('♠︎', '5')]
+        self.assertFalse(self.joker.check(self.hand))
+
+    def test_check_true(self):
+        self.hand.hand = [Card('♠︎', 'A'),
+                          Card('♠︎', '2'),
+                          Card('♠︎', '3'),
+                          Card('♠︎', '4'),
+                          JokerCard()]
+        self.assertTrue(self.joker.check(self.hand))
 
 class TestStraightFlash(unittest.TestCase):
     def setUp(self):
