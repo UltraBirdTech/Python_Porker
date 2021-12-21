@@ -224,7 +224,10 @@ class Joker():
         pass
 
     def check_joker(self, hand):
-        return hand.is_joker()
+        if hand.is_joker():
+            return True
+        # Joker が存在しない場合はError.
+        raise NotIncludeJokerError()
 
 class Check():
     def __init__(self, is_joker=False):
