@@ -223,7 +223,10 @@ class Joker():
         pass
 
     def check_joker(self, hand):
-        return hand.is_joker()
+        if hand.is_joker():
+            return True
+        # Joker が存在しない場合はError.
+        raise NotIncludeJokerError()
 
 class Check():
     def __init__(self, is_joker=False):
@@ -338,14 +341,10 @@ class StraightFlash(PorkerHand):
         check_list.sort()
         return check_list == hand_list
 
-class JokerStraightFlash(StraightFlash):
+class JokerStraightFlash(StraightFlash, Joker):
     def check(self, hand, straight_result, flash_result):
-        if hand.is_joker():
-            super().check(hand, straight_result, flash_result)
-            return
-
-        # Joker が存在しない場合はError.
-        raise NotIncludeJokerError()
+        self.check_joker(hand)
+        super().check(hand, straight_result, flash_result)
 
     def is_royal(self, hand):
         hand_list = hand.get_numbers()

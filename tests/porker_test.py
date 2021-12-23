@@ -432,7 +432,8 @@ class TestJoker(unittest.TestCase):
                           Card('♠︎', '3'),
                           Card('♠︎', '4'),
                           Card('♠︎', '5')]
-        self.assertFalse(self.joker.check_joker(self.hand))
+        with self.assertRaises(NotIncludeJokerError):
+            self.joker.check_joker(self.hand)
 
     def test_check_true(self):
         self.hand.hand = [Card('♠︎', 'A'),
