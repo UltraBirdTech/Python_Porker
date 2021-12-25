@@ -362,18 +362,14 @@ class Flash(PorkerHand):
         suits = hand.get_all_suits()
         self.result = (len(set(suits)) == self.duplicate_suite_count)
 
-class JokerFlash(Flash):
+class JokerFlash(Flash, Joker):
     def __init__(self):
         super().__init__()
         self.duplicate_suite_count = 2 # Jokerを含めて重複をはじいた結果が2であればフラッシュ
 
     def check_conditions(self, hand):
-        if hand.is_joker():
-            super().check_conditions(hand)
-            return
-
-        # Joker が存在しない場合はError.
-        raise NotIncludeJokerError()
+        self.check_joker(hand)
+        super().check_conditions(hand)
 
 class Straight(PorkerHand):
     def __init__(self):
