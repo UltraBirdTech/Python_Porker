@@ -388,12 +388,9 @@ class Straight(PorkerHand):
             number_list = list(range(numbers[0], numbers[0] + 5))
         self.result = (numbers == number_list)
 
-class JokerStraight(Straight):
+class JokerStraight(Straight, Joker):
     def check_conditions(self, hand):
-        if not hand.is_joker():
-            # Joker が存在しない場合はError.
-            raise NotIncludeJokerError()
-
+        self.check_joker(hand)
         numbers = hand.get_numbers_as_int()
         numbers.remove('Joker') # joker は邪魔なのでremove()して取り除く
         numbers.sort()
