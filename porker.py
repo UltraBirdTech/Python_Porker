@@ -157,7 +157,6 @@ class Player():
     def check_poker_hand(self):
         self.hand.check_porker_hand()
 
-
 class InputValueError(Exception):
     def __init__(self, message):
         self.message = message
@@ -318,7 +317,6 @@ class PorkerHand():
 
     def display(self):
         print('My hand is ' + self.porker_hand)
-
 
 class StraightFlash(PorkerHand):
     def __init__(self):
@@ -509,7 +507,6 @@ class Pair(PorkerHand):
                 check_dict[n] = 1
         self.result = list(check_dict.values()).count(2) == self.pair_num
 
-
 class TwoPair(Pair):
     def __init__(self):
         super().__init__('TwoPair')
@@ -529,7 +526,6 @@ class JokerTwoPair(Pair):
 
         # Joker が存在しない場合はError.
         raise NotIncludeJokerError()
-
 
 class OnePair(Pair):
     def __init__(self):

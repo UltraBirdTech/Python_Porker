@@ -31,7 +31,6 @@ from porker import JokerTwoPair
 from porker import JokerOnePair
 from porker import NotIncludeJokerError
 
-
 class TestCard(unittest.TestCase):
     def setUp(self):
         self.card1 = Card('♠︎', 'A')
@@ -123,7 +122,6 @@ class TestJokerCard(unittest.TestCase):
 
     def test_is_joker(self):
         self.assertTrue(self.card.is_joker())
-
 
 class TestDeck(unittest.TestCase):
     def setUp(self):
@@ -300,7 +298,6 @@ class TestHand(unittest.TestCase):
         ])
         self.assertEqual(self.hand.get_higher_number().card_number(), 9)
 
-
 class TestCheck(unittest.TestCase):
     def setUp(self):
         self.check = Check()
@@ -370,7 +367,6 @@ class TestCheck(unittest.TestCase):
         ])
         self.assertEqual(type(self.check.check(self.hand)), type(StraightFlash()))
 
-
     def test_check_three_card(self):
         self.hand.hand = ([
             Card('♠', 'A'),
@@ -401,7 +397,6 @@ class TestCheck(unittest.TestCase):
             JokerCard()
         ])
         self.assertEqual(type(self.check.check(self.hand)), type(JokerFiveCard()))
-
 
 class TestPorkerHand(unittest.TestCase):
     def setUp(self):
@@ -1165,7 +1160,6 @@ class TestJokerTwoPair(unittest.TestCase):
                           Card('♠︎', '9')]
         self.two_pair.check(self.hand)
         self.assertFalse(self.two_pair.result)
-
 
 class TestOnePair(unittest.TestCase):
     def setUp(self):
