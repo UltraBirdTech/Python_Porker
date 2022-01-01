@@ -447,13 +447,6 @@ class JokerFourCard(Kind, Joker):
     def check_conditions(self, hand):
         self.check_joker(hand)
         super().check_conditions(hand)
-        #if hand.is_joker():
-        #    super().check_conditions(hand)
-        #    return
-
-        # Joker が存在しない場合はError.
-        #raise NotIncludeJokerError()
-
 
 class ThreeCard(Kind):
     def __init__(self):
