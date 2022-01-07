@@ -473,7 +473,7 @@ class FullHouse(PorkerHand):
     def check(self, hand, onepair_result, three_card_result):
         self.check_conditions(hand, onepair_result, three_card_result)
 
-class JokerFullHouse(FullHouse):
+class JokerFullHouse(FullHouse, Joker):
     def __init__(self):
         super().__init__()
 
@@ -484,11 +484,8 @@ class JokerFullHouse(FullHouse):
 
     # Joker の時はワンペア、スリーカードの判定はいらないが、親関数とのかねあいで引数を追加する。引数は使わない。
     def check(self, hand, onepir_result=True, three_card_result=True):
-        if hand.is_joker():
-            self.check_conditions(hand)
-            return
-         # Joker が存在しない場合はError.
-        raise NotIncludeJokerError()
+        self.check_joker(hand)
+        self.check_conditions(hand)
 
 class Pair(PorkerHand):
     def __init__(self, porker_hand):
