@@ -515,12 +515,6 @@ class JokerTwoPair(Pair, Joker):
     def check_conditions(self, hand):
         self.check_joker(hand)
         self.result = False # Joker が手札にある場合は2ペアになることはないので常にFalseを設定する
-        #if hand.is_joker():
-        #    self.result = False # Joker が手札にある場合は2ペアになることはないので常にFalseを設定する
-        #    return
-
-        # Joker が存在しない場合はError.
-        #raise NotIncludeJokerError()
 
 class OnePair(Pair):
     def __init__(self):
