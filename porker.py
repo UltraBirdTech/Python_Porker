@@ -532,12 +532,6 @@ class JokerOnePair(Pair, Joker):
     def check_conditions(self, hand):
         self.check_joker(hand)
         self.result = True # Joker を持っている場合は最低でもOnePairになるためTrueになる。
-        #if hand.is_joker():
-        #    self.result = True # Joker を持っている場合は最低でもOnePairになるためTrueになる。
-        #    return
-
-        # Joker が存在しない場合はError.
-        #raise NotIncludeJokerError()
 
 class Peke(PorkerHand):
     def __init__(self):
